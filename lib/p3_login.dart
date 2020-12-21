@@ -18,19 +18,22 @@ class _LoginState extends State<Login> {
     _passwordVisible = false;
   }
 
+
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _blue,
+        appBar: AppBar(
+            title: Text(
+              "Log In",
+            )
+        ),
+
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(30.0),
-              child: Text(
-                'Login',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -109,7 +112,7 @@ class _LoginState extends State<Login> {
                                 builder: (context) => singin(),
                               ));
                         },
-                        child: Text('SignUp'),
+                        child: Text('Sign Up'),
                       ),
                     ),
                   ),
@@ -121,7 +124,7 @@ class _LoginState extends State<Login> {
                       child: RaisedButton(
                         onPressed: () { },
                         child: Text(
-                          'Login',
+                          'Log In',
                           style: TextStyle(fontSize: 25.0),
                         ),
                         color: _white,

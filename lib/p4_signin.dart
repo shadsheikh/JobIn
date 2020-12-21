@@ -14,7 +14,7 @@ class _singinState extends State<singin> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            "Sing in",
+            "Sign Up",
           )
       ),
 
@@ -162,7 +162,7 @@ class _singinState extends State<singin> {
                               builder: (context) => Login(),
                             ));
                       },
-                      child: Text('Login'),
+                      child: Text('Log In'),
                     ),
                   ),
                 ),
@@ -181,7 +181,7 @@ class _singinState extends State<singin> {
                             ));
                       },
                       child: Text(
-                        'Sing in',
+                        'Sign Up',
                         style: TextStyle(fontSize: 25.0),
                       ),
                       color: Colors.white,

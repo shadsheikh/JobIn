@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Internet Connection",
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: p1_internet_check(),
     );
   }
 }

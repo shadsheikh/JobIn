@@ -10,19 +10,21 @@ class _p2_optionState extends State<p2_option> {
   Color _white = Colors.white;
   Color _blue = Colors.blue;
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _blue,
+        appBar: AppBar(
+            title: Text(
+              "JobsIn",
+            )
+        ),
+
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(30.0),
-              child: Text(
-                'JobsIn',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
             ),
             sizedBox(context, 0.1),
             buttonTheme(context, 0.95, 0.07, 'Employee', _white, 25.0, 20.0),

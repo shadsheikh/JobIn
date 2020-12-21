@@ -3,22 +3,26 @@ import 'dart:io';
 import 'package:dsc_jobin/P2_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:connectivity/connectivity.dart';
 
-class HomePage extends StatefulWidget {
+class p1_internet_check extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _p1_internet_checkState createState() => _p1_internet_checkState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _p1_internet_checkState extends State<p1_internet_check> {
+
+  ConnectivityResult previous;
+
+
   @override
-  void iniState(){
+  void initState(){
     super.initState();
     try{
       InternetAddress.lookup('google.com').then((result){
         if(result.isNotEmpty && result[0].rawAddress.isNotEmpty){
-          //internet conn available
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>
-             p2_option(),
+              p2_option(),
           ));
         }else{
           // no conn
@@ -32,6 +36,20 @@ class _HomePageState extends State<HomePage> {
       //no internet
       _showdialog();
     }
+
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult connresult){
+      if(connresult == ConnectivityResult.none){
+
+      }else if(previous == ConnectivityResult.none){
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (Context) =>
+            p2_option(),
+        ));
+      }
+      previous = connresult;
+    });
+
+
+
   }
 
   void _showdialog(){
@@ -42,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           content: Text("No Internet Detected."),
           actions: <Widget>[
             FlatButton(
-              onPressed: () =>SystemChannels.platform.invokeMethod('Systemnavigator.pop'),
+              onPressed: () => SystemChannels.platform.invokeMethod('Systemnavigator.pop'),
               child: Text("Exit"),
             ),
           ]
