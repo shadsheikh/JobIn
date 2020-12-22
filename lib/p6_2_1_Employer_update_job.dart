@@ -46,7 +46,6 @@ class _p6_2_1_employer_update_jobState
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: _blue,
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -64,6 +63,9 @@ class _p6_2_1_employer_update_jobState
       body: Center(
         child: Column(
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -80,8 +82,8 @@ class _p6_2_1_employer_update_jobState
                   errorText:
                       _jobTitileValidate ? 'Value Can\'t Be Empty' : null,
                   prefixText: '  ',
-                  border:
-                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -108,8 +110,8 @@ class _p6_2_1_employer_update_jobState
                     ),
                   ),
                   //prefixText: '  ',
-                  border:
-                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -131,8 +133,8 @@ class _p6_2_1_employer_update_jobState
                     color: Theme.of(context).primaryColorDark,
                   ),
                   //prefixText: '  ',
-                  border:
-                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
