@@ -1,4 +1,5 @@
-import 'package:dsc_jobin/p3_login.dart';
+import 'package:dsc_jobin/p2_options.dart';
+import 'package:dsc_jobin/p3_Employer_login.dart';
 import 'package:flutter/material.dart';
 
 
@@ -159,7 +160,7 @@ class _singinState extends State<singin> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Login(),
+                              builder: (context) => p2_option(),
                             ));
                       },
                       child: Text('Log In'),

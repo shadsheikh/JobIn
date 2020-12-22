@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'p5_Employee_Drawer.dart';
 
-class p5_employee extends StatefulWidget {
+class p5_2_employee_job_appl extends StatefulWidget {
   @override
-  _p5_employeeState createState() => _p5_employeeState();
+  _p5_2_employee_job_applState createState() => _p5_2_employee_job_applState();
 }
 
-class _p5_employeeState extends State<p5_employee> {
+class _p5_2_employee_job_applState extends State<p5_2_employee_job_appl> {
 
   Icon cusIcon = Icon(Icons.search);
-  Widget cutSearchBar = Text("Employee");
+  Widget cutSearchBar = Text("Job Applied");
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _p5_employeeState extends State<p5_employee> {
                 }
                 else{
                   this.cusIcon = Icon(Icons.search);
-                  this.cutSearchBar = Text("Employee");
+                  this.cutSearchBar = Text("Job Applied");
                 }
               });
             },

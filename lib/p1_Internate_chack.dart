@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dsc_jobin/P2_options.dart';
+import 'package:dsc_jobin/p2_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:connectivity/connectivity.dart';

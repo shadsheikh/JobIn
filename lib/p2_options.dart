@@ -1,5 +1,7 @@
+import 'package:dsc_jobin/p3_Admin_login.dart';
+import 'package:dsc_jobin/p3_Employee_login.dart';
 import 'package:flutter/material.dart';
-import 'p3_login.dart';
+import 'p3_Employer_login.dart';
 
 class p2_option extends StatefulWidget {
   @override
@@ -53,11 +55,29 @@ ButtonTheme buttonTheme(BuildContext context, double width, double height,
     child: RaisedButton(
       color: color,
       onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Login(),
-            ));
+        if(text == 'Employee'){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => p3_employee_login(),
+              ));
+        }
+        else if(text == 'Employer'){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => p3_employer_login(),
+              ));
+        }
+        else{
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => p3_admin_login(),
+              ));
+        }
+
+
       },
       child: Text(
         '$text',
