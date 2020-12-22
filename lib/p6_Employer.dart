@@ -1,13 +1,6 @@
-import 'package:dsc_jobin/p6_1_Employer_create_new_job.dart';
-import 'package:dsc_jobin/p6_2_Employer_current_jobs.dart';
-import 'package:dsc_jobin/p6_4_Employer_chg_password.dart';
-import 'package:dsc_jobin/p6_5_Employer_change_name.dart';
-import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
-import 'package:dsc_jobin/p6_7_Employer_Complete_Pro.dart';
-import 'package:dsc_jobin/p6_8_Employer_Report.dart';
-import 'package:dsc_jobin/p6_9_Employer_Contact_us.dart';
+import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:flutter/material.dart';
-import 'p6_3_Employer_show_emplyees.dart';
+
 class p6_employer extends StatefulWidget {
   @override
   _p6_employerState createState() => _p6_employerState();
@@ -23,9 +16,9 @@ class _p6_employerState extends State<p6_employer> {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            onPressed: (){
+            onPressed: () {
               setState(() {
-                if(this.cusIcon.icon == Icons.search){
+                if (this.cusIcon.icon == Icons.search) {
                   this.cusIcon = Icon(Icons.cancel);
                   this.cutSearchBar = TextField(
                     textInputAction: TextInputAction.go,
@@ -33,16 +26,14 @@ class _p6_employerState extends State<p6_employer> {
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "Search",
-                      border: new OutlineInputBorder(
-                      ),
+                      border: new OutlineInputBorder(),
                     ),
-                    style : TextStyle(
-                      color:Colors.blue,
+                    style: TextStyle(
+                      color: Colors.blue,
                       fontSize: 16.0,
                     ),
                   );
-                }
-                else{
+                } else {
                   this.cusIcon = Icon(Icons.search);
                   this.cutSearchBar = Text("Employer");
                 }
@@ -50,294 +41,74 @@ class _p6_employerState extends State<p6_employer> {
             },
             icon: cusIcon,
           ),
-
-
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed:(){},
+            onPressed: () {},
           ),
-
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed:(){},
+            onPressed: () {},
           ),
-
         ],
-
-        title:  cutSearchBar,
-
+        title: cutSearchBar,
       ),
-
-
-      drawer: Drawer(
+      drawer: EmployerDrawer(),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text(
-                "Shad Sheikh",
-              ),
-              accountEmail: Text(
-                  "shadsheikh3107@gmail.com"
-              ),
-              currentAccountPicture: CircleAvatar(
-                child : Text(
-                    "S"
-                ),
-                backgroundColor: Colors.white,
-              ),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(
+                  context,
+                  'John Marsh',
+                  '20',
+                  'Teaching',
+                  'B.Tech',
+                  'Male',
+                  '164, Saket Nagar, Indore, MP',
+                  '9876543210'),
             ),
-
-            ListTile(
-              leading : Icon(Icons.person_add_outlined),
-              title : Text(
-                "Change Name",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_5_Employer_change_name(),
-                      ));
-                }
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(
+                  context,
+                  'John Marsh',
+                  '20',
+                  'Teaching',
+                  'B.Tech',
+                  'Male',
+                  '164, Saket Nagar, Indore, MP',
+                  '9876543210'),
             ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.messenger_outline),
-              title : Text(
-                "Applicant",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_6_Employer_Applicant(),
-                      ));
-                }
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(
+                  context,
+                  'John Marsh',
+                  '20',
+                  'Teaching',
+                  'B.Tech',
+                  'Male',
+                  '164, Saket Nagar, Indore, MP',
+                  '9876543210'),
             ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.open_in_new_outlined),
-              title : Text(
-                "Creat New Jobs",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_1_employer_create_new_job(),
-                      ));
-                }
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(
+                  context,
+                  'John Marsh',
+                  '20',
+                  'Teaching',
+                  'B.Tech',
+                  'Male',
+                  '164, Saket Nagar, Indore, MP',
+                  '9876543210'),
             ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.location_on_sharp),
-              title : Text(
-                "Current Jobs",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_2_emplooyer_current_jobs(),
-                      ));
-                }
-            ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.person_add),
-              title : Text(
-                "Complete Your Profile",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_7_Employer_Complete_pro(),
-                      ));
-                }
-            ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.group_rounded),
-              title : Text(
-                "Show Employee",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_3_Employer_show_employee(),
-                      ));
-                }
-            ),
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.autorenew),
-              title : Text(
-                "Change Password",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_4_employer_chg_password(),
-                      ));
-                }
-            ),
-
-
-            Divider(),
-
-            ListTile(
-              leading : Icon(Icons.report),
-              title : Text(
-                "Report",
-              ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_8_Employer_Report(),
-                      ));
-                }
-            ),
-
-            Divider(),
-            Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ListTile(
-                    leading : Icon(Icons.contacts),
-                    title : Text(
-                      "Contact Us",
-                    ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => p6_9_Employer_Contact_us(),
-                            ));
-                      }
-                  ),
-                ))
-
           ],
         ),
       ),
-
-
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(
-                      context,
-                      'John Marsh',
-                      '25',
-                      'Teaching',
-                      'M.Tech',
-                      'Male',
-                      '128, Saket Nager, Indore, M.P.',
-                      '9876543210'),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-
-
     );
   }
-
 }
 
 class TextBox extends StatelessWidget {
@@ -357,7 +128,6 @@ class TextBox extends StatelessWidget {
     );
   }
 }
-
 
 Container container(
     BuildContext context,
@@ -522,8 +292,6 @@ Container container(
     ),
   );
 }
-
-
 
 //Vishesh's Code
 /*

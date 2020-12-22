@@ -1,5 +1,5 @@
+import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:flutter/material.dart';
-
 
 class p6_2_1_employer_update_job extends StatefulWidget {
   static String jobTitle,
@@ -15,20 +15,22 @@ class p6_2_1_employer_update_job extends StatefulWidget {
   static String title() {
     return jobTitle;
   }
-  @override
-  _p6_2_1_employer_update_jobState createState() => _p6_2_1_employer_update_jobState();
-}
 
+  @override
+  _p6_2_1_employer_update_jobState createState() =>
+      _p6_2_1_employer_update_jobState();
+}
 
 enum JobType { fullTime, partTime }
 enum JobMode { offline, online }
 
-
-class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job> {
+class _p6_2_1_employer_update_jobState
+    extends State<p6_2_1_employer_update_job> {
   var _white = Colors.white;
   var _blue = Colors.blue;
   var _black = Colors.black;
-  var _jobTitle = TextEditingController(text: p6_2_1_employer_update_job.title());
+  var _jobTitle =
+      TextEditingController(text: p6_2_1_employer_update_job.title());
   var _salary = TextEditingController();
   var _vacancy = TextEditingController();
   var _jobTitileValidate = true;
@@ -38,6 +40,8 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
   String _selectedCity;
   JobType _jobType = JobType.fullTime;
   JobMode _jobMode = JobMode.offline;
+  Icon cusIcon = Icon(Icons.search);
+  Widget cutSearchBar = Text("Update Job");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,156 +50,20 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.comment),
-            tooltip: 'Chat',
+            icon: Icon(Icons.notifications),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.chat),
             onPressed: () {},
           ),
         ],
-        backgroundColor: _blue,
-        elevation: 50.0,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Menu',
-          onPressed: () {},
-        ),
-        brightness: Brightness.dark,
+        title: cutSearchBar,
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Container(
-              color: _blue,
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: Column(
-                children: [
-                  DrawerHeader(
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('images/Logo.png'),
-                      radius: 70,
-                    ),
-                  ),
-                  Text('Company Name',
-                      style: TextStyle(color: _white, fontSize: 20))
-                ],
-              ),
-            ),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Show Applicants(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {/*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Applicants(),
-                      ));
-                */}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Show Employees(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {/*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Employee(),
-                      ));
-                */}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Complete Your Profile',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Current Jobs(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {/*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CurrentJob(),
-                      ));
-                */}),
-            Divider(color: Colors.black),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
-                'Create New Job',
-                style: TextStyle(color: _blue),
-              ),
-              onTap: () {/*
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NewJob(),
-                    ));
-              */},
-            ),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Skills',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
-                'Change Password',
-                style: TextStyle(color: _blue),
-              ),
-              onTap: () {/*
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChangePassword(),
-                    ));
-              */},
-            ),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Report User',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Contact Us',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-          ],
-        ),
-      ),
+      drawer: EmployerDrawer(),
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Update Job',
-                style: TextStyle(
-                    color: _white, fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -210,10 +78,10 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
                     color: Theme.of(context).primaryColorDark,
                   ),
                   errorText:
-                  _jobTitileValidate ? 'Value Can\'t Be Empty' : null,
+                      _jobTitileValidate ? 'Value Can\'t Be Empty' : null,
                   prefixText: '  ',
                   border:
-                  OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -241,7 +109,7 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
                   ),
                   //prefixText: '  ',
                   border:
-                  OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -264,7 +132,7 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
                   ),
                   //prefixText: '  ',
                   border:
-                  OutlineInputBorder(borderSide: BorderSide(color: _black)),
+                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -287,7 +155,7 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
                     color: _white,
                     child: Container(
                       decoration:
-                      BoxDecoration(border: Border.all(color: _black)),
+                          BoxDecoration(border: Border.all(color: _black)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -339,7 +207,7 @@ class _p6_2_1_employer_update_jobState extends State<p6_2_1_employer_update_job>
                     color: _white,
                     child: Container(
                       decoration:
-                      BoxDecoration(border: Border.all(color: _black)),
+                          BoxDecoration(border: Border.all(color: _black)),
                       //color: _white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

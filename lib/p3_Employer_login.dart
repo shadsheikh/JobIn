@@ -1,5 +1,6 @@
 import 'package:dsc_jobin/p4_signin.dart';
 import 'package:dsc_jobin/p5_Employee.dart';
+import 'package:dsc_jobin/p6_10_Employer_forget_pass.dart';
 import 'package:dsc_jobin/p6_Employer.dart';
 import 'package:flutter/material.dart';
 
@@ -97,7 +98,13 @@ class _p3_employer_loginState extends State<p3_employer_login> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgetPassword(),
+                              ));
+                        },
                         child: Text('Forget Password'),
                       ),
                     ),

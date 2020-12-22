@@ -1,16 +1,14 @@
-import 'package:dsc_jobin/p3_Employer_login.dart';
-import 'package:dsc_jobin/p6_Employer_drawer.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:dsc_jobin/p3_Employer_login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/material.dart';
 
-class p6_4_employer_chg_password extends StatefulWidget {
+class ForgetPassword extends StatefulWidget {
   @override
-  _p6_4_employer_chg_passwordState createState() =>
-      _p6_4_employer_chg_passwordState();
+  _ForgetPasswordState createState() => _ForgetPasswordState();
 }
 
-class _p6_4_employer_chg_passwordState
-    extends State<p6_4_employer_chg_password> {
+class _ForgetPasswordState extends State<ForgetPassword> {
   var _white = Colors.white;
   var _blue = Colors.blue;
   var _black = Colors.black;
@@ -56,26 +54,17 @@ class _p6_4_employer_chg_passwordState
     );
   }
 
-  Icon cusIcon = Icon(Icons.search);
-  Widget cutSearchBar = Text("Change Password");
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: _blue,
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
-        ],
-        title: cutSearchBar,
+        title: Text('Forget Password'),
+        backgroundColor: _blue,
+        elevation: 50.0,
+        brightness: Brightness.dark,
       ),
-      drawer: EmployerDrawer(),
       body: new Builder(
         builder: (BuildContext context) {
           return Center(
@@ -161,8 +150,8 @@ class _p6_4_employer_chg_passwordState
                         prefixIcon: Padding(
                           padding: const EdgeInsets.only(
                               top: 8.0, right: 8.0, bottom: 8.0, left: 12.0),
-                          child: Icon(
-                            Icons.vpn_key,
+                          child: FaIcon(
+                            FontAwesomeIcons.key,
                             color: Theme.of(context).primaryColorDark,
                           ),
                         ),
@@ -216,8 +205,8 @@ class _p6_4_employer_chg_passwordState
                         prefixIcon: Padding(
                           padding: const EdgeInsets.only(
                               top: 8.0, right: 8.0, bottom: 8.0, left: 12.0),
-                          child: Icon(
-                            Icons.lock,
+                          child: FaIcon(
+                            FontAwesomeIcons.lock,
                             color: Theme.of(context).primaryColorDark,
                           ),
                         ),

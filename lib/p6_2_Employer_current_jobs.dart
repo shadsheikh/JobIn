@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:flutter/material.dart';
 import 'p6_2_1_Employer_update_job.dart';
 
@@ -12,209 +13,75 @@ class p6_2_emplooyer_current_jobs extends StatefulWidget {
       city = "";
 
   @override
-  _p6_2_emplooyer_current_jobsState createState() => _p6_2_emplooyer_current_jobsState();
+  _p6_2_emplooyer_current_jobsState createState() =>
+      _p6_2_emplooyer_current_jobsState();
 }
 
-class _p6_2_emplooyer_current_jobsState extends State<p6_2_emplooyer_current_jobs> {
-
+class _p6_2_emplooyer_current_jobsState
+    extends State<p6_2_emplooyer_current_jobs> {
   Color _white = Colors.white;
   Color _blue = Colors.blue;
+  Icon cusIcon = Icon(Icons.search);
+  Widget cutSearchBar = Text("Current Jobs");
   // var _search = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Container(
-              color: _blue,
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: Column(
-                children: [
-                  DrawerHeader(
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('images/Logo.png'),
-                      radius: 70,
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              setState(() {
+                if (this.cusIcon.icon == Icons.search) {
+                  this.cusIcon = Icon(Icons.cancel);
+                  this.cutSearchBar = TextField(
+                    textInputAction: TextInputAction.go,
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      hintText: "Search",
+                      border: new OutlineInputBorder(),
                     ),
-                  ),
-                  Text('Company Name',
-                      style: TextStyle(color: _white, fontSize: 20))
-                ],
-              ),
-            ),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Show Applicants(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {/*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Applicants(),
-                      ));
-                */}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Show Employees(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {/*
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Employee(),
-                      ));
-                */}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Complete Your Profile',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Current Jobs(0)',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => p6_2_emplooyer_current_jobs(),
-                      ));
-                }),
-            Divider(color: Colors.black),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
-                'Create New Job',
-                style: TextStyle(color: _blue),
-              ),
-              onTap: () {/*
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NewJob(),
-                    ));
-              */},
-            ),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Skills',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
-                'Change Password',
-                style: TextStyle(color: _blue),
-              ),
-              onTap: () {/*
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChangePassword(),
-                    ));
-             */ },
-            ),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Report User',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-            Divider(color: Colors.black),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(
-                  'Contact Us',
-                  style: TextStyle(color: _blue),
-                ),
-                onTap: () {}),
-          ],
-        ),
-      ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            floating: true,
-            expandedHeight: MediaQuery.of(context).size.height * 0.15,
-            title: TextBox(),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.comment),
-                tooltip: 'Chat',
-                onPressed: () {},
-              ),
-            ],
-            backgroundColor: _blue,
-            elevation: 50.0,
-            leading: IconButton(
-              icon: Icon(Icons.menu),
-              tooltip: 'Menu',
-              onPressed: () {},
-            ),
-            brightness: Brightness.dark,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'Current Jobs',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-              ),
-              centerTitle: true,
-            ),
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16.0,
+                    ),
+                  );
+                } else {
+                  this.cusIcon = Icon(Icons.search);
+                  this.cutSearchBar = Text("Employer");
+                }
+              });
+            },
+            icon: cusIcon,
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: container(context, 'Teacher', '20000', '20', 'B.Ed',
-                      'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
-                ),
-              ],
-            ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.chat),
+            onPressed: () {},
           ),
         ],
+        title: cutSearchBar,
+      ),
+      drawer: EmployerDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(context, 'Teacher', '20000', '20', 'B.Ed',
+                  'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: container(context, 'Teacher', '20000', '20', 'B.Ed',
+                  'Full Time', 'Offline', 'Madhya Pradesh', 'Indore'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -259,7 +126,7 @@ Container container(
   var _white = Colors.white;
   return Container(
     decoration:
-    BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: _blue),
+        BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: _blue),
     width: MediaQuery.of(context).size.width * 0.9,
     child: Column(
       children: [
