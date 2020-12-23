@@ -1,4 +1,6 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 
 class p6_5_Employer_change_name extends StatefulWidget {
@@ -15,15 +17,8 @@ class _p6_5_Employer_change_nameState extends State<p6_5_Employer_change_name> {
             "Change Name"
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed:(){},
-          ),
-
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed:(){},
-          ),
+          AppNotification(),
+          Chat(),
 
         ],
       ),

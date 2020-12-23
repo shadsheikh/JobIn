@@ -1,6 +1,8 @@
 import 'package:dsc_jobin/p3_Employer_login.dart';
 import 'package:dsc_jobin/p6_Employer.dart';
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -33,14 +35,8 @@ class _p6_4_employer_chg_passwordState
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
         title: cutSearchBar,
       ),

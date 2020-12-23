@@ -1,4 +1,6 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 class SendMail extends StatefulWidget {
@@ -26,14 +28,8 @@ class _SendMailState extends State<SendMail> {
       appBar: AppBar(
         title: Text("Contact Us"),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
       ),
       drawer: EmployerDrawer(),

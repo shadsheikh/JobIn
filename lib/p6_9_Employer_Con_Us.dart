@@ -1,5 +1,7 @@
 import 'package:dsc_jobin/p6_9_1_Employer_sendMail.dart';
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,14 +20,8 @@ class _ContactUsState extends State<ContactUs> {
       appBar: AppBar(
         title: Text("Contact Us"),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
       ),
       drawer: EmployerDrawer(),

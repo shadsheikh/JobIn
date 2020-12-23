@@ -1,4 +1,6 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 
 class p6_6_Employer_Applicant extends StatefulWidget {
@@ -41,14 +43,8 @@ class _p6_6_Employer_ApplicantState extends State<p6_6_Employer_Applicant> {
             },
             icon: cusIcon,
           ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
         title: cutSearchBar,
       ),

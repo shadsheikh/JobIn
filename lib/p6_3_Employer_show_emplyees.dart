@@ -1,4 +1,6 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 
 class p6_3_Employer_show_employee extends StatefulWidget {
@@ -44,14 +46,8 @@ class _p6_3_Employer_show_employeeState
             },
             icon: cusIcon,
           ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
         title: cutSearchBar,
       ),

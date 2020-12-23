@@ -1,5 +1,8 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
 
 class p6_employer extends StatefulWidget {
   @override
@@ -9,7 +12,6 @@ class p6_employer extends StatefulWidget {
 class _p6_employerState extends State<p6_employer> {
   Icon cusIcon = Icon(Icons.search);
   Widget cutSearchBar = Text("Employer");
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +43,8 @@ class _p6_employerState extends State<p6_employer> {
             },
             icon: cusIcon,
           ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed: () {},
-          ),
+          AppNotification(),
+          Chat(),
         ],
         title: cutSearchBar,
       ),

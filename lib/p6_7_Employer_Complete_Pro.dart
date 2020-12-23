@@ -1,4 +1,6 @@
+import 'package:dsc_jobin/p6_Employer_chat.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 class p6_7_Employer_Complete_pro extends StatefulWidget {
   @override
@@ -14,15 +16,8 @@ class _p6_7_Employer_Complete_proState extends State<p6_7_Employer_Complete_pro>
             "Complete Profile"
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed:(){},
-          ),
-
-          IconButton(
-            icon: Icon(Icons.chat),
-            onPressed:(){},
-          ),
+          AppNotification(),
+          Chat(),
 
         ],
       ),
