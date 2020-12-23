@@ -20,7 +20,7 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-       mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
@@ -28,7 +28,10 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
             ),
             accountEmail: Text("vishesh.suryavanshi07@gmail.com"),
             currentAccountPicture: CircleAvatar(
-              child: Text("V",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40.0),),
+              child: Text(
+                "V",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0),
+              ),
               backgroundColor: Colors.white,
             ),
           ),
