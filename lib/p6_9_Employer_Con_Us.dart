@@ -186,6 +186,7 @@ class _ContactUsState extends State<ContactUs> {
                       FloatingActionButton(
                         backgroundColor: _white,
                         heroTag: 'linkedin',
+                         tooltip: 'LinkedIn',
                         child: FaIcon(
                           FontAwesomeIcons.linkedinIn,
                           color: _blue,
