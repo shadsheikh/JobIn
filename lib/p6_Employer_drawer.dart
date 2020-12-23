@@ -20,15 +20,15 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+       mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Shad Sheikh",
+              "Vishesh Suryavanshi",
             ),
-            accountEmail: Text("shadsheikh3107@gmail.com"),
+            accountEmail: Text("vishesh.suryavanshi07@gmail.com"),
             currentAccountPicture: CircleAvatar(
-              child: Text("S"),
+              child: Text("V",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40.0),),
               backgroundColor: Colors.white,
             ),
           ),

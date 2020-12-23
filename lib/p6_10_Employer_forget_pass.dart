@@ -58,7 +58,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: _blue,
       appBar: AppBar(
         title: Text('Forget Password'),
         backgroundColor: _blue,
@@ -70,6 +69,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           return Center(
             child: Column(
               children: [
+                SizedBox(height: MediaQuery.of(context).size.height*0.02,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
