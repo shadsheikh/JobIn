@@ -1,7 +1,7 @@
 import 'package:dsc_jobin/p6_9_1_Employer_sendMail.dart';
-import 'package:dsc_jobin/p6_Employer_chat.dart';
+import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
-import 'package:dsc_jobin/p6_Employer_notification.dart';
+import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
