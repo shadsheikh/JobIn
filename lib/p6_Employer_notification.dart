@@ -18,12 +18,21 @@ class _NotificationsState extends State<Notifications> {
         elevation: 50.0,
         brightness: Brightness.dark,
         actions: <Widget>[
-          AppNotification(),
           Chat(),
         ],
       ),
       body: ListView(
         children: [
+          Container(
+            color: Colors.grey[200],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Recent',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           padding('John Smith', 'Programmer'),
           Divider(),
           padding('Shane Wade', 'Teacher'),
@@ -36,6 +45,16 @@ class _NotificationsState extends State<Notifications> {
           Divider(),
           padding('Darrel Cook', 'Press Man'),
           Divider(),
+          Container(
+            color: Colors.grey[200],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Earlier',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           padding('Dave Haster', 'Painter'),
           Divider(),
           padding('Ivy Johnson', 'Sales Man'),
@@ -62,7 +81,10 @@ Padding padding(String name, String post) {
         decoration: BoxDecoration(border: Border.all(color: _blue)),
         child: ListTile(
           tileColor: _white,
-          leading: Icon(Icons.person,color: _black,),
+          leading: Icon(
+            Icons.person,
+            color: _black,
+          ),
           title: RichText(
             text: new TextSpan(
               style: TextStyle(fontSize: 18.0, color: _black),
