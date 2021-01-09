@@ -1,8 +1,9 @@
 import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
+import 'package:dsc_jobin/p6_Employer_filter_icon.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
+import 'p6_Employer_filter.dart';
 
 class p6_employer extends StatefulWidget {
   @override
@@ -45,6 +46,7 @@ class _p6_employerState extends State<p6_employer> {
           ),
           AppNotification(),
           Chat(),
+          AppFilter(),
         ],
         title: cutSearchBar,
       ),
@@ -52,6 +54,7 @@ class _p6_employerState extends State<p6_employer> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: container(

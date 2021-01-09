@@ -135,7 +135,7 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => p6_8_Employer_Report(),
+                      builder: (context) => ReportUser(),
                     ));
               }),
           Divider(),
