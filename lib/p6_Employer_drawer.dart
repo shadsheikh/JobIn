@@ -1,9 +1,8 @@
+import 'package:dsc_jobin/p6_11_Employer_CompleteProfile.dart';
 import 'package:dsc_jobin/p6_2_Employer_current_jobs.dart';
 import 'package:dsc_jobin/p6_3_Employer_show_emplyees.dart';
 import 'package:dsc_jobin/p6_4_Employer_chg_password.dart';
-import 'package:dsc_jobin/p6_5_Employer_change_name.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
-import 'package:dsc_jobin/p6_7_Employer_Complete_Pro.dart';
 import 'package:dsc_jobin/p6_8_Employer_Report.dart';
 import 'package:dsc_jobin/p6_9_Employer_Con_Us.dart';
 import 'package:flutter/material.dart';
@@ -35,19 +34,6 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
               backgroundColor: Colors.white,
             ),
           ),
-          ListTile(
-              leading: Icon(Icons.person_add_outlined),
-              title: Text(
-                "Change Name",
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => p6_5_Employer_change_name(),
-                    ));
-              }),
-          Divider(),
           ListTile(
               leading: Icon(Icons.messenger_outline),
               title: Text(
@@ -96,7 +82,7 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => p6_7_Employer_Complete_pro(),
+                      builder: (context) => CompleteProfile(),
                     ));
               }),
           Divider(),
@@ -139,22 +125,18 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
                     ));
               }),
           Divider(),
-          Expanded(
-              child: Align(
-            alignment: Alignment.bottomCenter,
-            child: ListTile(
-                leading: Icon(Icons.contacts),
-                title: Text(
-                  "Contact Us",
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ContactUs(),
-                      ));
-                }),
-          ))
+          ListTile(
+          leading: Icon(Icons.contacts),
+          title: Text(
+            "Contact Us",
+          ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ContactUs(),
+                ));
+          })
         ],
       ),
     );
