@@ -223,7 +223,7 @@ Container container(
                     style: TextStyle(fontSize: 20.0, color: _white),
                     children: [
                       new TextSpan(
-                          text: 'Contact No. : ',
+                          text: 'Contact No : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       new TextSpan(
                         text: '$contact',
