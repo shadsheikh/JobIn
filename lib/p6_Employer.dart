@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/p6_12_Applicant_Profile.dart';
 import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_filter_icon.dart';
@@ -64,44 +65,44 @@ class _p6_employerState extends State<p6_employer> {
                   'Teaching',
                   'B.Tech',
                   'Male',
-                  '164, Saket Nagar, Indore, MP',
+                  '164, Saket Nagar',
                   '9876543210'),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: container(
                   context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
+                  'Eric Smith',
+                  '50',
+                  'Doctor',
+                  'M.B.B.S.',
                   'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
+                  '100, Mhow Naka',
+                  '7410258963'),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: container(
                   context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
+                  'Mil Gates',
+                  '25',
+                  'Electrician',
+                  'Senior Secondry School',
                   'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
+                  '1655, Manglaya ',
+                  '8552001100'),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: container(
                   context,
-                  'John Marsh',
-                  '20',
+                  'Mary Gill',
+                  '24',
                   'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
+                  'B.Ed',
+                  'Female',
+                  '122, Rajmohalla',
+                  '1234056789'),
             ),
           ],
         ),
@@ -148,7 +149,13 @@ Container container(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        onPressed: () {},
+        onPressed: () {
+         Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ApplicantProfile(name: name,age: age,skills: skills,qualification: qualification,gender: gender,address: address,contact: contact,gmail: 'abc@gmail.com',city: 'Indore',state:'Madhya Pradesh',dob: '08-12-2020'),
+        ));
+        },
         color: _blue,
         child: Column(
           children: [
