@@ -3,7 +3,7 @@ import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class ApplicantProfile extends StatefulWidget {
   final name,
       age,
@@ -75,7 +75,9 @@ class _ApplicantProfileState extends State<ApplicantProfile> {
                   buttonColor: _blue,
                   minWidth: MediaQuery.of(context).size.width * 0.4,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _textMe();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -135,7 +137,6 @@ Padding padding(BuildContext context, var icon, String key, String value) {
         1: FlexColumnWidth(4),
         2: FlexColumnWidth(4),
       },
-     // border: TableBorder.all(width: 1.0, color: Colors.red),
       children: [
         TableRow(children: [
           Align(
@@ -160,14 +161,18 @@ Padding padding(BuildContext context, var icon, String key, String value) {
     ),
   );
 }
-// Icon(icon,color: _blue,),
-//           Text(
-//             key,
-//             style: TextStyle(
-//                 color: _blue, fontWeight: FontWeight.bold, fontSize: 20.0),
-//           ),
-//           Text(
-//             value,
-//             style: TextStyle(color: _blue, fontSize: 20.0),
-//             textAlign: TextAlign.start,
-//           ),
+ _textMe() async {
+    // Android
+    const uri = 'sms:+91 7869700488?body=hello%20there';
+    if (await canLaunch(uri)) {
+      await launch(uri);
+    } else {
+      // iOS
+      const uri = 'sms:+91 7869700488?body=hello%20there';
+      if (await canLaunch(uri)) {
+        await launch(uri);
+      } else {
+        throw 'Could not launch $uri';
+      }
+    }
+  }
