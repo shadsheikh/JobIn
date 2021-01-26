@@ -2,6 +2,7 @@ import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
+
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class p6_1_employer_create_new_job extends StatefulWidget {
   @override
@@ -20,9 +21,11 @@ class _p6_1_employer_create_new_jobState
   var _jobTitle = TextEditingController();
   var _salary = TextEditingController();
   var _vacancy = TextEditingController();
+  var _skill = TextEditingController();
   var _jobTitileValidate = false;
   var _salaryValidate = false;
   var _vacancyValidate = false;
+  var _skillValidate = false;
   Icon cusIcon = Icon(Icons.search);
   Widget cutSearchBar = Text("Create Job");
 
@@ -35,6 +38,7 @@ class _p6_1_employer_create_new_jobState
     _jobTitle.dispose();
     _salary.dispose();
     _vacancy.dispose();
+    _skill.dispose();
     super.dispose();
   }
 
@@ -114,7 +118,7 @@ class _p6_1_employer_create_new_jobState
                   labelText: 'Vacancy',
                   hintText: 'Enter No. of Vacancies',
                   prefixIcon: Icon(
-                    Icons.person,
+                    Icons.add,
                     color: Theme.of(context).primaryColorDark,
                   ),
                   //prefixText: '  ',
@@ -125,12 +129,21 @@ class _p6_1_employer_create_new_jobState
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                //height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width,
-                color: _white,
-                child: SizedBox(
-                  child: Text('Space for Skills'),
+              child: TextFormField(
+                controller: _skill,
+                decoration: InputDecoration(
+                  errorText: _skillValidate ? 'Value Can\'t Be Empty' : null,
+                  fillColor: _white,
+                  filled: true,
+                  labelText: 'Skills',
+                  hintText: 'Enter Skills Required',
+                  prefixIcon: Icon(
+                    Icons.widgets_rounded,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  //prefixText: '  ',
+                  border:
+                      OutlineInputBorder(borderSide: BorderSide(color: _black)),
                 ),
               ),
             ),
@@ -139,39 +152,37 @@ class _p6_1_employer_create_new_jobState
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    color: _white,
-                    child: Container(
-                      decoration:
-                          BoxDecoration(border: Border.all(color: _black)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text('Full Time'),
-                              groupValue: _jobType,
-                              onChanged: (JobType value) {
-                                setState(() {
-                                  _jobType = value;
-                                });
-                              },
-                              value: JobType.fullTime,
-                            ),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: RadioListTile(
+                            title: Text('Full Time'),
+                            groupValue: _jobType,
+                            onChanged: (JobType value) {
+                              setState(() {
+                                _jobType = value;
+                              });
+                            },
+                            value: JobType.fullTime,
                           ),
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text('Part Time'),
-                              groupValue: _jobType,
-                              onChanged: (JobType value) {
-                                setState(() {
-                                  _jobType = value;
-                                });
-                              },
-                              value: JobType.partTime,
-                            ),
+                        ),
+                        Expanded(
+                          child: RadioListTile(
+                            title: Text('Part Time'),
+                            groupValue: _jobType,
+                            onChanged: (JobType value) {
+                              setState(() {
+                                _jobType = value;
+                              });
+                            },
+                            value: JobType.partTime,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -181,7 +192,10 @@ class _p6_1_employer_create_new_jobState
                       color: _white,
                       child: Text(
                         'Job Type',
-                        style: TextStyle(color: _black, fontSize: 12),
+                        style: TextStyle(
+                            color: _black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
               ],
@@ -191,40 +205,37 @@ class _p6_1_employer_create_new_jobState
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    color: _white,
-                    child: Container(
-                      decoration:
-                          BoxDecoration(border: Border.all(color: _black)),
-                      //color: _white,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text('Offline'),
-                              groupValue: _jobMode,
-                              onChanged: (JobMode value) {
-                                setState(() {
-                                  _jobMode = value;
-                                });
-                              },
-                              value: JobMode.offline,
-                            ),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: RadioListTile(
+                            title: Text('Offline'),
+                            groupValue: _jobMode,
+                            onChanged: (JobMode value) {
+                              setState(() {
+                                _jobMode = value;
+                              });
+                            },
+                            value: JobMode.offline,
                           ),
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text('Online'),
-                              groupValue: _jobMode,
-                              onChanged: (JobMode value) {
-                                setState(() {
-                                  _jobMode = value;
-                                });
-                              },
-                              value: JobMode.online,
-                            ),
+                        ),
+                        Expanded(
+                          child: RadioListTile(
+                            title: Text('Online'),
+                            groupValue: _jobMode,
+                            onChanged: (JobMode value) {
+                              setState(() {
+                                _jobMode = value;
+                              });
+                            },
+                            value: JobMode.online,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -234,7 +245,10 @@ class _p6_1_employer_create_new_jobState
                       color: _white,
                       child: Text(
                         'Job Mode',
-                        style: TextStyle(color: _black, fontSize: 12),
+                        style: TextStyle(
+                            color: _black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
               ],
@@ -244,19 +258,16 @@ class _p6_1_employer_create_new_jobState
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    //height: MediaQuery.of(context).size.height * 0.1,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
                     width: MediaQuery.of(context).size.width,
-                    color: _white,
                     child: DropdownButton<String>(
                       isExpanded: true,
                       hint: Text('Select State'),
                       icon: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(Icons.arrow_downward),
-                      ),
-                      underline: Container(
-                        color: _black,
-                        height: 1,
                       ),
                       value: _selectedState,
                       items: <String>[
@@ -304,7 +315,10 @@ class _p6_1_employer_create_new_jobState
                       color: _white,
                       child: Text(
                         'State',
-                        style: TextStyle(color: _black, fontSize: 12),
+                        style: TextStyle(
+                            color: _black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
               ],
@@ -314,19 +328,16 @@ class _p6_1_employer_create_new_jobState
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    //height: MediaQuery.of(context).size.height * 0.1,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5)),
                     width: MediaQuery.of(context).size.width,
-                    color: _white,
                     child: DropdownButton<String>(
                       hint: Text('Select City'),
                       isExpanded: true,
                       icon: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(Icons.arrow_downward),
-                      ),
-                      underline: Container(
-                        color: _black,
-                        height: 1,
                       ),
                       value: _selectedCity,
                       items: <String>[
@@ -689,7 +700,10 @@ class _p6_1_employer_create_new_jobState
                       color: _white,
                       child: Text(
                         'City',
-                        style: TextStyle(color: _black, fontSize: 12),
+                        style: TextStyle(
+                            color: _black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
               ],
@@ -699,9 +713,9 @@ class _p6_1_employer_create_new_jobState
                 padding: const EdgeInsets.all(8.0),
                 child: ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width * 0.9,
-                  // height: MediaQuery.of(context).size.height * 0.09,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   child: RaisedButton(
-                    color: _white,
+                    color: _blue,
                     onPressed: () {
                       setState(() {
                         _jobTitle.text.isEmpty
@@ -715,12 +729,22 @@ class _p6_1_employer_create_new_jobState
                             : _vacancyValidate = false;
                       });
                     },
-                    child: Text(
-                      'Create Job',
-                      style: TextStyle(fontSize: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Create Job',
+                          style: TextStyle(fontSize: 25.0, color: _white),
+                        ),
+                        Icon(
+                          Icons.add_circle_rounded,
+                          color: _white,
+                          size: 30.0,
+                        )
+                      ],
                     ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(5)),
                   ),
                 ),
               ),
