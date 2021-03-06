@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "498542387346",
+    "project_id": "dscjobsin",
+    "storage_bucket": "dscjobsin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498542387346:android:6587a0708f7f526c49064b",
+        "android_client_info": {
+          "package_name": "com.example.dsc_jobin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498542387346-67u9ptobcasu6ecemqrlvljmrlnvl31q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dsc_jobin",
+            "certificate_hash": "76537f17c5fb8941d8dd8c903ebfc8d071056813"
+          }
+        },
+        {
+          "client_id": "498542387346-nll6eor5o70m9c5bgshltt9vusoh7okk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj87IzfovW7qIpgbxzahHLsj5X19tFSRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498542387346-nll6eor5o70m9c5bgshltt9vusoh7okk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

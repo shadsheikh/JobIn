@@ -32,6 +32,9 @@ dependencies:
   badges: ^1.1.6
   font_awesome_flutter: ^8.11.0
   flappy_search_bar: ^1.7.2
+  firebase_core: "0.7.0"
+  cloud_firestore: ^0.16.0
+  firebase_auth: ^0.20.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

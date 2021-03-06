@@ -3,6 +3,10 @@ import 'package:dsc_jobin/p5_Employee.dart';
 import 'package:dsc_jobin/p6_10_Employer_forget_pass.dart';
 import 'package:dsc_jobin/p6_Employer.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dsc_jobin/services/auth.dart';
+import 'package:dsc_jobin/employer_signin.dart';
 
 class p3_employer_login extends StatefulWidget {
   @override
@@ -16,6 +20,9 @@ class _p3_employer_loginState extends State<p3_employer_login> {
   var _passwordVisible;
   var _email = TextEditingController();
   var _password = TextEditingController();
+  final AuthService _auth = AuthService();
+  final _formkey = GlobalKey<FormState>();
+  String error = '';
   @override
   void initState() {
     _passwordVisible = false;
@@ -131,13 +138,22 @@ class _p3_employer_loginState extends State<p3_employer_login> {
                       minWidth: MediaQuery.of(context).size.width * 0.95,
                       height: MediaQuery.of(context).size.height * 0.07,
                       child: RaisedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => p6_employer(),
-                              ));
-                        },
+                          onPressed: () async{
+                            dynamic result = await _auth
+                                .signInwithEmailAndPassword(_email.text, _password.text);
+                            if (result == null) {
+                              setState(() {
+                                error = 'Invalid username/password';
+                              });
+                            }
+                            else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => p6_employer(),
+                                  ));
+                            }
+                          },
                         child: Text(
                           'Log In',
                           style: TextStyle(fontSize: 25.0),
