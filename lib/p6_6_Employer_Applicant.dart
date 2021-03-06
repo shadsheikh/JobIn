@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/p6_12_Applicant_Profile.dart';
 import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
@@ -94,7 +95,13 @@ Container container(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        onPressed: () {},
+         onPressed: () {
+         Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ApplicantProfile(name: name,age: age,skills: skills,qualification: qualification,gender: gender,address: address,contact: contact,gmail: 'abc@gmail.com',city: 'Indore',state:'Madhya Pradesh',dob: '08-12-2020'),
+        ));
+        },
         color: _blue,
         child: Column(
           children: [
