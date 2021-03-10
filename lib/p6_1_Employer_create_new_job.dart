@@ -2,8 +2,10 @@ import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
-
+import 'package:dsc_jobin/p6_Employer.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class p6_1_employer_create_new_job extends StatefulWidget {
   @override
   _p6_1_employer_create_new_jobState createState() =>
@@ -15,6 +17,8 @@ enum JobMode { offline, online }
 
 class _p6_1_employer_create_new_jobState
     extends State<p6_1_employer_create_new_job> {
+  final firestoreInstance = FirebaseFirestore.instance;
+
   var _white = Colors.white;
   var _blue = Colors.blue;
   var _black = Colors.black;
@@ -717,6 +721,7 @@ class _p6_1_employer_create_new_jobState
                   child: RaisedButton(
                     color: _blue,
                     onPressed: () {
+
                       setState(() {
                         _jobTitle.text.isEmpty
                             ? _jobTitileValidate = true
@@ -727,7 +732,10 @@ class _p6_1_employer_create_new_jobState
                         _vacancy.text.isEmpty
                             ? _vacancyValidate = true
                             : _vacancyValidate = false;
-                      });
+                      }
+
+                      );
+                      JOBCREATE();
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -753,6 +761,34 @@ class _p6_1_employer_create_new_jobState
         ),
       ),
     );
+  }
+  void JOBCREATE()
+  {
+    // String JOBTITLE=_jobTitle.toString();
+    // String SALARY=_salary.toString();
+    // String VACANCY=_vacancy.toString();
+    // String SKILL=_skill.toString();
+    FirebaseFirestore.instance.collection("Employer").doc(FirebaseAuth.instance.currentUser.uid).collection("JOB").add({
+      "Jobtitle": _jobTitle.text,
+      "Salary": _salary.text,
+      "Vacancy": _vacancy.text,
+      "Skills":_skill.text,
+      "Job_Type":_jobType.toString(),
+      "Job_Mode": _jobMode.toString(),
+      "State":_selectedState.toString(),
+      "City":_selectedCity.toString(),
+    }).then((value) {
+      print(value.id);
+      //firestoreInstance.collection("Employer").doc("DMHh9StKYiMRote09iUx0azKcov2").collection("pets").add({"petName": "blacky", "petType": "dog", "petAge": 1});
+      //firestoreInstance.collection('path').doc("documentPath").collection('subCollectionPath').add({"petName": "blacky", "petType": "dog", "petAge": 1});
+
+    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => p6_employer(),
+        ));
+
   }
 }
 

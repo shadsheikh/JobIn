@@ -17,7 +17,12 @@ class _sign12State extends State<sign12> {
   final AuthService _auth = AuthService();
   String email,password,address,name,city,state,id;
   String error = '';
+  var _password = TextEditingController();
+  var _passwordVisible;
   @override
+  void initState() {
+    _passwordVisible = false;
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -77,22 +82,37 @@ class _sign12State extends State<sign12> {
                 ),
 
                 //Password
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    autofocus: false,
-                    obscureText: true,
+                    controller: _password,
+                    obscureText: !_passwordVisible,
                     onChanged: (val){
                       setState(() => password = val);
                     },
-                    //controller: TextEditingController(),
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
-                      hintText: 'Enter Your Password',
+                      labelText: 'Password/OTP',
+                      hintText: 'Enter Your Password/OTP',
                       prefixIcon: Icon(
                         Icons.lock,
                         color: Theme.of(context).primaryColorDark,
+                      ),
+                      prefixText: '  ',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
                       ),
                       border: new OutlineInputBorder(),
                     ),
