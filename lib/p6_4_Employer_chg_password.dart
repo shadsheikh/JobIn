@@ -21,11 +21,18 @@ class _p6_4_employer_chg_passwordState
   var _updatedPassword = TextEditingController();
   var _currentPasswordVisible;
   var _updatedPasswordVisible;
+  var _currentValidate=false;
+  var _updateValidate=false;
   @override
   void initState() {
     super.initState();
     _currentPasswordVisible = false;
     _updatedPasswordVisible = false;
+  }
+  void dispose() {
+    _currentPassword.dispose();
+    _updatedPassword.dispose();
+    super.dispose();
   }
 
   Icon cusIcon = Icon(Icons.search);
@@ -62,6 +69,8 @@ class _p6_4_employer_chg_passwordState
                     color: Theme.of(context).primaryColorDark,
                   ),
                   prefixText: '  ',
+                  errorText:
+                  _currentValidate ? 'Value Can\'t Be Empty' : null,
                   suffixIcon: IconButton(
                     icon: Icon(
                       _currentPasswordVisible
@@ -94,6 +103,8 @@ class _p6_4_employer_chg_passwordState
                     color: Theme.of(context).primaryColorDark,
                   ),
                   prefixText: '  ',
+                  errorText:
+                  _updateValidate ? 'Value Can\'t Be Empty' : null,
                   suffixIcon: IconButton(
                     icon: Icon(
                       _updatedPasswordVisible
@@ -118,12 +129,36 @@ class _p6_4_employer_chg_passwordState
                 height: MediaQuery.of(context).size.height * 0.07,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => p6_employer(),
-                        ));
+
+                    setState(() {
+                      _currentPassword.text.isEmpty
+                          ? _currentValidate = true
+                          : _currentValidate = false;
+                      _updatedPassword.text.isEmpty
+                          ? _updateValidate = true
+                          : _updateValidate = false;
+                    }
+
+                    );
+                    if (_currentValidate==false && _updateValidate==false ) {
+                      //CNGPASS();
+                      Navigator.push(
+                                context,
+                                 MaterialPageRoute(
+                                   builder: (context) => p6_employer(),
+                                 ));
+                    }
+                    else {
+                      print("Error");
+                    }
                   },
+                  // onPressed: () {
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => p6_employer(),
+                  //       ));
+                  // },
                   child: Text(
                     'Change Password',
                     style: TextStyle(fontSize: 25.0),

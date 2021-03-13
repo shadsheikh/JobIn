@@ -125,7 +125,7 @@ class _p3_employer_loginState extends State<p3_employer_login> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => singin(),
+                                builder: (context) => sign12(),
                               ));
                         },
                         child: Text('Sign Up'),

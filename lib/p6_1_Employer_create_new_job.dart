@@ -732,10 +732,19 @@ class _p6_1_employer_create_new_jobState
                         _vacancy.text.isEmpty
                             ? _vacancyValidate = true
                             : _vacancyValidate = false;
+                        _skill.text.isEmpty
+                            ? _skillValidate = true
+                            : _skillValidate = false;
                       }
 
                       );
-                      JOBCREATE();
+                      if (_jobTitileValidate==false && _salaryValidate==false && _vacancyValidate==false &&
+                            _skillValidate==false) {
+                        JOBCREATE();
+                      }
+                      else {
+                        print("Error");
+                      }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

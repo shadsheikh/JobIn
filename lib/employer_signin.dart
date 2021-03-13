@@ -19,12 +19,14 @@ class _sign12State extends State<sign12> {
   String error = '';
   var _password = TextEditingController();
   var _passwordVisible;
+  var _passwordValidate=false;
   @override
   void initState() {
     _passwordVisible = false;
   }
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
           title: Text(
             "Sign Up",
@@ -88,6 +90,7 @@ class _sign12State extends State<sign12> {
                   child: TextFormField(
                     controller: _password,
                     obscureText: !_passwordVisible,
+
                     onChanged: (val){
                       setState(() => password = val);
                     },
@@ -101,6 +104,8 @@ class _sign12State extends State<sign12> {
                         color: Theme.of(context).primaryColorDark,
                       ),
                       prefixText: '  ',
+                      errorText:
+                      _passwordValidate ? 'Value Can\'t Be Empty' : null,
                       suffixIcon: IconButton(
                         icon: Icon(
                           _passwordVisible
