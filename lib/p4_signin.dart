@@ -1,7 +1,11 @@
 import 'package:dsc_jobin/p2_options.dart';
+import 'package:dsc_jobin/p3_Employee_login.dart';
 import 'package:dsc_jobin/p3_Employer_login.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:path/path.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dsc_jobin/services/auth.dart';
 
 class singin extends StatefulWidget {
   @override
@@ -9,19 +13,23 @@ class singin extends StatefulWidget {
 }
 
 class _singinState extends State<singin> {
-
+  final _formkey = GlobalKey<FormState>();
+  final AuthService _auth = AuthService();
+  String email,password,address,name,city,state,id;
+  String error = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
           title: Text(
             "Sign Up",
           )
       ),
 
-      body:Column(
+      body: SingleChildScrollView(
+    child :Form(
+    key : _formkey,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children:<Widget> [
 
@@ -34,6 +42,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                   onChanged: (val){
+                    setState(() => name = val);
+                   },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -51,6 +62,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    onChanged: (val){
+                      setState(() => email = val);
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -68,7 +82,12 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    controller: TextEditingController(),
+                    autofocus: false,
+                    obscureText: true,
+                    onChanged: (val){
+                      setState(() => password = val);
+                    },
+
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -86,6 +105,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    onChanged: (val){
+                      setState(() => address = val);
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -103,6 +125,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    onChanged: (val){
+                      setState(() => city = val);
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -120,6 +145,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    onChanged: (val){
+                      setState(() => state = val);
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -139,6 +167,9 @@ class _singinState extends State<singin> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    onChanged: (val){
+                      setState(() => id = val);
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -176,12 +207,21 @@ class _singinState extends State<singin> {
                     minWidth: MediaQuery.of(context).size.width * 0.95,
                     height: MediaQuery.of(context).size.height * 0.07,
                     child: RaisedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              //  builder: (context) => Employer(),
-                            ));
+                      onPressed: () async {
+                        dynamic result = await _auth
+                            .registerwithEmailAndPassword(email, password, name,state,city,address,id);
+                        if (result == null) {
+                          setState(() {
+                            error = 'Something went wrong. Try again';
+                          });
+                        }
+                        else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => p3_employee_login(),
+                              ));
+                        }
                       },
                       child: Text(
                         'Sign Up',
@@ -194,12 +234,17 @@ class _singinState extends State<singin> {
                   ),
                 )
 
-
               ],
             ),
           ),
+          SizedBox(height: 12.0),
+          Text(
+            error,
+            style: TextStyle(color: Colors.red, fontSize: 14.0),
+          )
         ],
       ),
-    );
+    )));
   }
 }
+
