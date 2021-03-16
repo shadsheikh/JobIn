@@ -2,6 +2,9 @@ import 'package:dsc_jobin/p4_signin.dart';
 import 'package:dsc_jobin/p5_Employee.dart';
 import 'package:dsc_jobin/p6_Employer.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dsc_jobin/services/auth.dart';
 
 class p3_employee_login extends StatefulWidget {
   @override
@@ -15,6 +18,9 @@ class _p3_employee_loginState extends State<p3_employee_login> {
   var _passwordVisible;
   var _email = TextEditingController();
   var _password = TextEditingController();
+  final AuthService _auth = AuthService();
+  final _formkey = GlobalKey<FormState>();
+  String error = '';
   @override
   void initState() {
     _passwordVisible = false;
@@ -30,7 +36,10 @@ class _p3_employee_loginState extends State<p3_employee_login> {
             )
         ),
 
-      body: Center(
+      body: SingleChildScrollView(
+      child :Form(
+      key : _formkey,
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -124,12 +133,21 @@ class _p3_employee_loginState extends State<p3_employee_login> {
                       minWidth: MediaQuery.of(context).size.width * 0.95,
                       height: MediaQuery.of(context).size.height * 0.07,
                       child: RaisedButton(
-                        onPressed: () {
+                        onPressed: () async{
+                        dynamic result = await _auth
+                        .signInwithEmailAndPassword(_email.text, _password.text);
+                       if (result == null) {
+                       setState(() {
+                         error = 'Invalid username/password';
+                       });
+                       }
+                       else {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => p5_employee(),
                               ));
+                          }
                         },
                         child: Text(
                           'Log In',
@@ -144,9 +162,15 @@ class _p3_employee_loginState extends State<p3_employee_login> {
                 ],
               ),
             ),
+            SizedBox(height: 12.0),
+            Text(
+              error,
+              style: TextStyle(color: Colors.red, fontSize: 14.0),
+            )
           ],
+
         ),
       ),
-    );
+    )));
   }
 }
