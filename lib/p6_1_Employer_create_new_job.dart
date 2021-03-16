@@ -777,7 +777,7 @@ class _p6_1_employer_create_new_jobState
     // String SALARY=_salary.toString();
     // String VACANCY=_vacancy.toString();
     // String SKILL=_skill.toString();
-    FirebaseFirestore.instance.collection("Employer").doc(FirebaseAuth.instance.currentUser.uid).collection("JOB").add({
+   FirebaseFirestore.instance.collection("JOB").add({
       "Jobtitle": _jobTitle.text,
       "Salary": _salary.text,
       "Vacancy": _vacancy.text,
@@ -786,6 +786,7 @@ class _p6_1_employer_create_new_jobState
       "Job_Mode": _jobMode.toString(),
       "State":_selectedState.toString(),
       "City":_selectedCity.toString(),
+      "user_uid": FirebaseAuth.instance.currentUser.uid,
     }).then((value) {
       print(value.id);
       //firestoreInstance.collection("Employer").doc("DMHh9StKYiMRote09iUx0azKcov2").collection("pets").add({"petName": "blacky", "petType": "dog", "petAge": 1});
