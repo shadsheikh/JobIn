@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'p5_Employee_Drawer.dart';
+import 'package:dsc_jobin/p5_Employee_Drawer.dart';
+import 'package:dsc_jobin/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:dsc_jobin/services/employer_list.dart';
+import 'package:dsc_jobin/models/employer.dart';
 
 class p5_employee extends StatefulWidget {
   @override
@@ -13,7 +18,9 @@ class _p5_employeeState extends State<p5_employee> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return StreamProvider<List<Employer>>.value(
+      value:DatabaseService().employer,
+      child:Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -62,7 +69,8 @@ class _p5_employeeState extends State<p5_employee> {
 
       ),
       drawer: p5_employee_drawer(),
-      body: SingleChildScrollView(
+      body: EmployerList(),
+      /*body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -115,9 +123,9 @@ class _p5_employeeState extends State<p5_employee> {
             ),
           ],
         ),
-      ),
+      ),*/
 
-    );
+    ));
   }
 
 }
