@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/p3_Employee_login.dart';
 import 'package:dsc_jobin/p5_1_Employee_Chg_Name.dart';
 import 'package:dsc_jobin/p5_2_Employee_Job_Appl.dart';
 import 'package:dsc_jobin/p5_3_Employee_My_Netw.dart';
@@ -7,28 +8,59 @@ import 'package:dsc_jobin/p5_7_Employee_Report.dart';
 import 'package:dsc_jobin/p5_8_Employee_Con_us.dart';
 import 'package:flutter/material.dart';
 import 'p5_6_Employee_Chg_Pass.dart';
+import 'package:dsc_jobin/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class p5_employee_drawer extends StatefulWidget {
   @override
   _p5_employee_drawerState createState() => _p5_employee_drawerState();
 }
 
 class _p5_employee_drawerState extends State<p5_employee_drawer> {
+  final AuthService _auth = AuthService();
+  final _authf = FirebaseAuth.instance;
+  User user;
+  String _userName, _pic = "";
+  @override
+  void initState() {
+    super.initState();
+    _getUserName();
+    initUser();
+  }
+  Future<void> _getUserName() async{
+    FirebaseFirestore.instance.collection('Employee')
+        .doc((await FirebaseAuth.instance.currentUser).uid)
+        .get()
+        .then((value){
+      setState(() {
+        _userName = value.data()['name'].toString();
+        _pic = _userName.substring(0,1).toUpperCase();
+      });
+    });
+  }
+  initUser() async{
+    user = await _authf.currentUser;
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
+        child: ListView(
+      //child: Column(
+        //mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              "Shad Sheikh",
+                "$_userName"
             ),
             accountEmail: Text(
-                "shadsheikh3107@gmail.com"
+                "${user?.email}"
             ),
             currentAccountPicture: CircleAvatar(
               child : Text(
-                  "S"
+                 // "S"
+                  "$_pic"
               ),
               backgroundColor: Colors.white,
             ),
@@ -47,6 +79,8 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
                     ));
               }
           ),
+
+          Divider(),
 
           ListTile(
             leading : Icon(Icons.settings_applications),
@@ -144,10 +178,10 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           ),
 
           Divider(),
-          Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ListTile(
+          //Expanded(
+              //child: Align(
+                //alignment: Alignment.bottomCenter,
+                ListTile(
                   leading : Icon(Icons.contacts),
                   title : Text(
                     "Contact Us",
@@ -160,7 +194,24 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
                           ));
                     }
                 ),
-              ))
+
+          Divider(),
+
+          ListTile(
+              leading : Icon(Icons.person),
+              title : Text(
+                "Log Out",
+              ),
+              onTap: () async{
+                await _auth.signOut();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => p3_employee_login(),
+                    ));
+              }
+          ),
+              //))
 
         ],
       ),
