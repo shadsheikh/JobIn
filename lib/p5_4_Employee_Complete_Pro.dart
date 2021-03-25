@@ -1,4 +1,5 @@
 
+import 'package:dsc_jobin/p5_Employee.dart';
 import 'package:flutter/material.dart';
 import 'p5_Employee_Drawer.dart';
 class p5_4_employee_complete_pro extends StatefulWidget {
@@ -7,7 +8,24 @@ class p5_4_employee_complete_pro extends StatefulWidget {
 }
 
 class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro> {
+  var _name=TextEditingController();
+  var _skills=TextEditingController();
+  var _email=TextEditingController();
+  var _dob=TextEditingController();
+  var _nameValidate = false;
+  var _skillsValidate = false;
+  var _emailValidate = false;
+  var _dobValidate = false;
+  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   @override
+  void dispose() {
+    _name.dispose();
+    _skills.dispose();
+    _email.dispose();
+    _dob.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,9 +63,11 @@ class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro>
                           style: TextStyle(color: Colors.grey),
                         )),
                     TextField(
-                      //controller: displayNameController,
+                      controller: _name,
                       decoration: InputDecoration(
                         hintText: "Update Display Name",
+                        errorText:
+                        _nameValidate ? 'Value Can\'t Be Empty' : null,
                         //errorText: _displayNameValid ? null : "Display Name too short",
                       ),
                     )
@@ -67,9 +87,11 @@ class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro>
                             style: TextStyle(color: Colors.grey),
                           )),
                       TextField(
-                        //controller: displayNameController,
+                        controller: _skills,
                         decoration: InputDecoration(
                           hintText: "Add Skills",
+                          errorText:
+                          _skillsValidate ? 'Value Can\'t Be Empty' : null,
                           //errorText: _displayNameValid ? null : "Display Name too short",
                         ),
                       )
@@ -89,9 +111,11 @@ class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro>
                             style: TextStyle(color: Colors.grey),
                           )),
                       TextField(
-                        //controller: displayNameController,
+                        controller: _email,
                         decoration: InputDecoration(
                           hintText: "Add Email Address",
+                          errorText:
+                          _emailValidate ? 'Value Can\'t Be Empty' : null,
                           //errorText: _displayNameValid ? null : "Display Name too short",
                         ),
                       )
@@ -111,9 +135,11 @@ class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro>
                             style: TextStyle(color: Colors.grey),
                           )),
                       TextField(
-                        //controller: displayNameController,
+                        controller: _dob,
                         decoration: InputDecoration(
                           hintText: "Add DOB",
+                          errorText:
+                          _dobValidate ? 'Value Can\'t Be Empty' : null,
                           //errorText: _displayNameValid ? null : "Display Name too short",
                         ),
                       )
@@ -122,7 +148,55 @@ class _p5_4_employee_complete_proState extends State<p5_4_employee_complete_pro>
               ),
 
               RaisedButton(
-                onPressed: (){},
+                onPressed: (){
+                  setState(() {
+                    _name.text.isEmpty
+                        ? _nameValidate = true
+                        : _nameValidate = false;
+                    _skills.text.isEmpty
+                        ? _skillsValidate = true
+                        : _skillsValidate = false;
+                    _email.text.isEmpty
+                        ? _emailValidate = true
+                        : _emailValidate = false;
+                    _dob.text.isEmpty
+                        ? _dobValidate = true
+                        : _dobValidate = false;
+                  }
+
+
+
+                  );
+                  if( _nameValidate==false && _skillsValidate==false && _emailValidate==false &&
+                          _dobValidate==false) {
+                    // final snackbar = SnackBar(
+                    //     content: Text('Applied Successfully')
+                    //
+                    // );
+                    // _scaffoldkey.currentState.showSnackBar(snackbar);
+                    final snackBar = SnackBar(
+                      content: Text('Applied Successfully'),
+
+                    );
+
+                    // Find the ScaffoldMessenger in the widget tree
+                    // and use it to show a SnackBar.
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => p5_employee(),
+                        ));
+                  }
+                  else {
+                    final snackBar = SnackBar(
+                      content: Text('Complete Your Profile'),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                  }
+                },
+
                 child: Text(
                   "Update Profile",
                   style: TextStyle(

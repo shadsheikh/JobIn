@@ -5,6 +5,8 @@ import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class p6_4_employer_chg_password extends StatefulWidget {
   @override
@@ -140,8 +142,19 @@ class _p6_4_employer_chg_passwordState
                     }
 
                     );
+                    //var _pass=TextEditingController();
                     if (_currentValidate==false && _updateValidate==false ) {
-                      //CNGPASS();
+                      String getpass=_updatedPassword.text;
+                      print(getpass);
+                      changePassword(getpass);
+                      //CollectionReference users = FirebaseFirestore.instance.collection("Employer");
+                      // Future<CollectionReference> updateUser() {
+                      //   return users
+                      //       .doc(FirebaseAuth.instance.currentUser.uid)
+                      //       .update({"password": _updatedPassword.text})
+                      //       .then((password) => print("User Updated"))
+                      //       .catchError((error) => print("Failed to update user: $error"));
+                      // }
                       Navigator.push(
                                 context,
                                  MaterialPageRoute(
@@ -174,4 +187,17 @@ class _p6_4_employer_chg_passwordState
       ),
     );
   }
+  Future<bool> changePassword(String password) async{
+    //FirebaseFirestore currentUser = FirebaseFirestore.instance;
+   print(password);
+    final userCredential = await FirebaseAuth.instance.currentUser.updatePassword(password).then((_){
+      print("Successfully changed password");
+    }).catchError((error){
+      print("Password can't be changed" + error.toString());
+    });
+    return userCredential;
+  }
+
+
 }
+

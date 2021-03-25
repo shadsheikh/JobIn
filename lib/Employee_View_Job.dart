@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/p5_4_Employee_Complete_Pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_jobin/models/employer.dart';
@@ -204,11 +205,18 @@ class _employee_jobState extends State<EmployeeJob> {
                            }).then((value){
 
                           });
-                            final snackbar = SnackBar(
-                                content: Text('Applied Successfully')
-                            );
-                            _scaffoldkey.currentState.showSnackBar(snackbar);
+                            // final snackbar = SnackBar(
+                            //     content: Text('Applied Successfully')
+
+                            // );
+                            // _scaffoldkey.currentState.showSnackBar(snackbar);
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => p5_4_employee_complete_pro(),
+                          ));
                           },
+
                         ),
                         const SizedBox(width: 10),
                       ]
