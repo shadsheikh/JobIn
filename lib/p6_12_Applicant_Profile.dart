@@ -4,6 +4,7 @@ import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 class ApplicantProfile extends StatefulWidget {
   final name,
       age,
@@ -141,7 +142,7 @@ Padding padding(BuildContext context, var icon, String key, String value) {
         TableRow(children: [
           Align(
             alignment: Alignment.centerLeft,
-                      child: Icon(
+            child: Icon(
               icon,
               color: _blue,
             ),
@@ -161,18 +162,19 @@ Padding padding(BuildContext context, var icon, String key, String value) {
     ),
   );
 }
- _textMe() async {
-    // Android
+
+_textMe() async {
+  // Android
+  const uri = 'sms:+91 7869700488?body=hello%20there';
+  if (await canLaunch(uri)) {
+    await launch(uri);
+  } else {
+    // iOS
     const uri = 'sms:+91 7869700488?body=hello%20there';
     if (await canLaunch(uri)) {
       await launch(uri);
     } else {
-      // iOS
-      const uri = 'sms:+91 7869700488?body=hello%20there';
-      if (await canLaunch(uri)) {
-        await launch(uri);
-      } else {
-        throw 'Could not launch $uri';
-      }
+      throw 'Could not launch $uri';
     }
   }
+}

@@ -24,6 +24,7 @@ class EmployerTile extends StatelessWidget{
               title: Text(
                   employer.jobtitle,
                 style: TextStyle(
+                  fontSize: 20,
                   color: Colors.white,
                 ),
               ),
@@ -31,6 +32,7 @@ class EmployerTile extends StatelessWidget{
                   'Vacancy: ${employer.vacancy}',
 
                 style: TextStyle(
+                  fontSize: 20,
                   color: Colors.white,
                 ),
                ),
@@ -39,7 +41,7 @@ class EmployerTile extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
               TextButton(
-                child: const Text('...more'),
+                child: const Text('...more',style: TextStyle(fontSize: 15),),
                 style: TextButton.styleFrom(
                   primary: Colors.white,
                 ),
