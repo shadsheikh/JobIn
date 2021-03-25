@@ -20,157 +20,150 @@ class _p3_employee_loginState extends State<p3_employee_login> {
   var _password = TextEditingController();
   final AuthService _auth = AuthService();
   final _formkey = GlobalKey<FormState>();
-  String error = '';
   @override
   void initState() {
     _passwordVisible = false;
   }
 
-
-
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             title: Text(
-              "Log In",
-            )
-        ),
-
-      body: SingleChildScrollView(
-      child :Form(
-      key : _formkey,
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _email,
-                      decoration: InputDecoration(
-                        fillColor: _white,
-                        filled: true,
-                        labelText: 'Email/Contact No.',
-                        hintText: 'Enter Your Email/Contact No',
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
-                        prefixText: '  ',
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: _black)),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _password,
-                      obscureText: !_passwordVisible,
-                      decoration: InputDecoration(
-                        fillColor: _white,
-                        filled: true,
-                        labelText: 'Password/OTP',
-                        hintText: 'Enter Your Password/OTP',
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: Theme.of(context).primaryColorDark,
-                        ),
-                        prefixText: '  ',
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _passwordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Theme.of(context).primaryColorDark,
+          "Log In",
+        )),
+        body: SingleChildScrollView(
+            child: Form(
+          key: _formkey,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: _email,
+                          decoration: InputDecoration(
+                            fillColor: _white,
+                            filled: true,
+                            labelText: 'Email/Contact No.',
+                            hintText: 'Enter Your Email/Contact No',
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            prefixText: '  ',
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: _black)),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _passwordVisible = !_passwordVisible;
-                            });
-                          },
                         ),
-                        border: new OutlineInputBorder(),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: FlatButton(
-                        onPressed: () {},
-                        child: Text('Forget Password'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => singin(),
-                              ));
-                        },
-                        child: Text('Sign Up'),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ButtonTheme(
-                      minWidth: MediaQuery.of(context).size.width * 0.95,
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      child: RaisedButton(
-                        onPressed: () async{
-                        dynamic result = await _auth
-                        .signInwithEmailAndPassword(_email.text, _password.text);
-                       if (result == null) {
-                       setState(() {
-                         error = 'Invalid username/password';
-                       });
-                       }
-                       else {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => p5_employee(),
-                              ));
-                          }
-                        },
-                        child: Text(
-                          'Log In',
-                          style: TextStyle(fontSize: 25.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: _password,
+                          obscureText: !_passwordVisible,
+                          decoration: InputDecoration(
+                            fillColor: _white,
+                            filled: true,
+                            labelText: 'Password/OTP',
+                            hintText: 'Enter Your Password/OTP',
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            prefixText: '  ',
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Theme.of(context).primaryColorDark,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
+                            border: new OutlineInputBorder(),
+                          ),
                         ),
-                        color: _white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: FlatButton(
+                            onPressed: () {},
+                            child: Text('Forget Password'),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => singin(),
+                                  ));
+                            },
+                            child: Text('Sign Up'),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ButtonTheme(
+                          minWidth: MediaQuery.of(context).size.width * 0.95,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: RaisedButton(
+                            onPressed: () async {
+                              dynamic result =
+                                  await _auth.signInwithEmailAndPassword(
+                                      _email.text, _password.text);
+                              if (result == null) {
+                                setState(() {
+                                  final snackBar = SnackBar(
+                                    content: Text('Invalid username/password'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                });
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => p5_employee(),
+                                    ));
+                              }
+                            },
+                            child: Text(
+                              'Log In',
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                            color: _white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0)),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 12.0),
-            Text(
-              error,
-              style: TextStyle(color: Colors.red, fontSize: 14.0),
-            )
-          ],
-
-        ),
-      ),
-    )));
+          ),
+        )));
   }
 }
