@@ -65,18 +65,6 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
               backgroundColor: Colors.white,
             ),
           ),
-          ListTile(
-              leading: Icon(Icons.add_a_photo),
-              title: Text(
-                "Update Profile Picture",
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => p6_6_Employer_Applicant(),
-                    ));
-              }),
           Divider(),
           ListTile(
               leading: Icon(Icons.messenger_outline),
