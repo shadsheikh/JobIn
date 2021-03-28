@@ -793,6 +793,23 @@ class _p6_1_employer_create_new_jobState
       //firestoreInstance.collection('path').doc("documentPath").collection('subCollectionPath').add({"petName": "blacky", "petType": "dog", "petAge": 1});
 
     });
+   FirebaseFirestore.instance.collection("Employer").doc(FirebaseAuth.instance.currentUser.uid).collection("Created_Jobs").add({
+     "Jobtitle": _jobTitle.text,
+     "Salary": _salary.text,
+     "Vacancy": _vacancy.text,
+     "Skills":_skill.text,
+     "Job_Type":_jobType.toString(),
+     "Job_Mode": _jobMode.toString(),
+     "State":_selectedState.toString(),
+     "City":_selectedCity.toString(),
+     "user_uid": FirebaseAuth.instance.currentUser.uid,
+   }).then((value) {
+     print(value.id);
+     //firestoreInstance.collection("Employer").doc("DMHh9StKYiMRote09iUx0azKcov2").collection("pets").add({"petName": "blacky", "petType": "dog", "petAge": 1});
+     //firestoreInstance.collection('path').doc("documentPath").collection('subCollectionPath').add({"petName": "blacky", "petType": "dog", "petAge": 1});
+
+   });
+
     Navigator.push(
         context,
         MaterialPageRoute(

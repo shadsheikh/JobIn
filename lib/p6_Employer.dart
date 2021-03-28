@@ -1,9 +1,13 @@
+import 'package:dsc_jobin/models/jobs_created.dart';
 import 'package:dsc_jobin/p6_12_Applicant_Profile.dart';
 import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
 import 'package:dsc_jobin/p6_Employer_drawer.dart';
 import 'package:dsc_jobin/p6_Employer_filter_icon.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
+import 'package:dsc_jobin/services/created_database.dart';
+import 'package:dsc_jobin/services/created_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'p6_Employer_filter.dart';
 import 'package:dsc_jobin/p3_Employer_login.dart';
 
@@ -17,7 +21,9 @@ class _p6_employerState extends State<p6_employer> {
   Widget cutSearchBar = Text("Employer");
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return StreamProvider<List<Created>>.value(
+    value:CreatedService().created,
+    child:Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -53,249 +59,10 @@ class _p6_employerState extends State<p6_employer> {
         title: cutSearchBar,
       ),
       drawer: EmployerDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'Eric Smith',
-                  '50',
-                  'Doctor',
-                  'M.B.B.S.',
-                  'Male',
-                  '100, Mhow Naka',
-                  '7410258963'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'Mil Gates',
-                  '25',
-                  'Electrician',
-                  'Senior Secondry School',
-                  'Male',
-                  '1655, Manglaya ',
-                  '8552001100'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'Mary Gill',
-                  '24',
-                  'Teaching',
-                  'B.Ed',
-                  'Female',
-                  '122, Rajmohalla',
-                  '1234056789'),
-            ),
-          ],
-        ),
-      ),
-    );
+      body: JobList(),
+    ));
   }
 }
 
-class TextBox extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var _white = Colors.white;
-    return Container(
-      alignment: Alignment.centerLeft,
-      color: _white,
-      child: TextFormField(
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: '  Search',
-          prefixText: '  ',
-        ),
-      ),
-    );
-  }
-}
 
-Container container(
-    BuildContext context,
-    String name,
-    String age,
-    String skills,
-    String qualification,
-    String gender,
-    String address,
-    String contact) {
-  var _blue = Colors.blue;
-  var _white = Colors.white;
-  return Container(
-    width: MediaQuery.of(context).size.width * 0.9,
-    child: Tooltip(
-      message: 'Click to View Profile',
-      child: RaisedButton(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-        ),
-        onPressed: () {
-         Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ApplicantProfile(name: name,age: age,skills: skills,qualification: qualification,gender: gender,address: address,contact: contact,gmail: 'abc@gmail.com',city: 'Indore',state:'Madhya Pradesh',dob: '08-12-2020'),
-        ));
-        },
-        color: _blue,
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Name: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$name',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Age: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$age',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Skills: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$skills',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Qualification : ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$qualification',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Gender: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$gender',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Address: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$address',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: new TextSpan(
-                    style: TextStyle(fontSize: 20.0, color: _white),
-                    children: [
-                      new TextSpan(
-                          text: 'Contact No. : ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      new TextSpan(
-                        text: '$contact',
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+

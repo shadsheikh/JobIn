@@ -70,60 +70,7 @@ class _p5_employeeState extends State<p5_employee> {
       ),
       drawer: p5_employee_drawer(),
       body: EmployerList(),
-      /*body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  'B.Tech',
-                  'Male',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-          ],
-        ),
-      ),*/
+
 
     ));
   }
