@@ -143,7 +143,11 @@ class _p3_employer_loginState extends State<p3_employer_login> {
                                 .signInwithEmailAndPassword(_email.text, _password.text);
                             if (result == null) {
                               setState(() {
-                                error = 'Invalid username/password';
+                                final snackBar = SnackBar(
+                                    content: Text('Invalid username/password'),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                               });
                             }
                             else {

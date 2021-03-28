@@ -1,3 +1,4 @@
+import 'package:dsc_jobin/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 class Chat extends StatefulWidget {
@@ -18,7 +19,13 @@ class _ChatState extends State<Chat> {
             ),
             child: IconButton(
               icon: Icon(Icons.chat),
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatScreen(),
+              ));
+              },
               tooltip: 'Chat',
             ),
           );
