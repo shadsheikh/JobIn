@@ -92,19 +92,19 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
                     ));
               }),
           Divider(),
-          ListTile(
-              leading: Icon(Icons.location_on_sharp),
-              title: Text(
-                "Current Jobs",
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => p6_2_emplooyer_current_jobs(),
-                    ));
-              }),
-          Divider(),
+          // ListTile(
+          //     leading: Icon(Icons.location_on_sharp),
+          //     title: Text(
+          //       "Current Jobs",
+          //     ),
+          //     onTap: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => p6_2_emplooyer_current_jobs(),
+          //           ));
+          //     }),
+          // Divider(),
           ListTile(
               leading: Icon(Icons.person_add),
               title: Text(
