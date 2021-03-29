@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dsc_jobin/chat.dart';
+import 'package:dsc_jobin/p6_Employer_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_jobin/p5_Employee_Drawer.dart';
 import 'package:dsc_jobin/services/database.dart';
@@ -55,12 +57,24 @@ class _p5_employeeState extends State<p5_employee> {
 
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed:(){},
+            onPressed:(){
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Notifications(),
+              ));
+            },
           ),
 
           IconButton(
             icon: Icon(Icons.chat),
-            onPressed:(){},
+            onPressed:(){
+               Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatScreen(),
+              ));
+            },
           ),
 
         ],

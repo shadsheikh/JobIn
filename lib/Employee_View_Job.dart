@@ -1,4 +1,3 @@
-import 'package:dsc_jobin/p5_4_Employee_Complete_Pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_jobin/models/employer.dart';
@@ -49,12 +48,16 @@ class _employee_jobState extends State<EmployeeJob> {
     setState(() {});
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     final Employer employer = ModalRoute.of(context).settings.arguments;
     String uid = employer.user_uid;
+    int count;
     var _jobType = employer.jobtype;
     var _jobMode = employer.jobmode;
+
     if (_jobType == "JobType.partTime") {
       _jobType = "Part Time";
     } else {
@@ -251,6 +254,27 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
+                              'Salary: ',
+                              style: TextStyle(
+                                  color: _blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '${employer.salary}',
+                              style: TextStyle(color: _blue, fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
                               'City: ',
                               style: TextStyle(
                                   color: _blue,
@@ -279,6 +303,22 @@ class _employee_jobState extends State<EmployeeJob> {
                             primary: Colors.white,
                             backgroundColor: Colors.blue),
                         onPressed: () {
+                          FirebaseFirestore.instance
+                              .collection("Employee")
+                              .doc(FirebaseAuth.instance.currentUser.uid)
+                              .collection("JOB_Applied")
+                              .add(
+                              {
+                                "jobtittle": employer.jobtitle,
+                                "skills": employer.skills,
+                                "vaccancy": employer.vacancy,
+                                "jobtype": employer.jobtype,
+                                "jobmode": employer.jobmode,
+                                "state": employer.state,
+                                "city": employer.city,
+                                "uid": employer.user_uid,
+                              }
+                          ).then((value) {});
                           dynamic result = FirebaseFirestore.instance
                               .collection("Employer")
                               .doc(uid)
@@ -292,133 +332,18 @@ class _employee_jobState extends State<EmployeeJob> {
                             "address": address,
                           }).then((value) {});
                           final snackbar =
-                              SnackBar(content: Text('Applied Successfully'));
+                          SnackBar(content: Text('Applied Successfully'));
                           _scaffoldkey.currentState.showSnackBar(snackbar);
-                        },
+                        }
+
                       ),
                       const SizedBox(width: 10),
                     ],
                   )
                 ],
               ),
-              /*child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  //ListTileTheme(
-                  //textColor: Colors.white,
 
-                  ListTile(
-                    title: Text(
-                      employer.jobtitle,
-                      //'g',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                      ),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '',
-                          //'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 15,
-                          ),
-                        ),
-                       Text(
-                         'Vacancy: ${employer.vacancy}',
-                         //'h',
-                          style: TextStyle(
-                          color: Colors.black,
-                            fontSize: 15,
-                      ),
-                    ),
-                        Text(
-                          'Skills: ${employer.skills}',
-                          //'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'Job Type: ${employer.jobtype}',
-                          //'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'Job Mode: ${employer.jobmode}',
-                          //'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'State: ${employer.state}',
-                         // 'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'City: ${employer.city}',
-                         // 'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          'Salary: ${employer.salary}',
-                          //'h',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ),
-                    ],
-                    ),
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        TextButton(
-                          child: const Text('Apply'),
-                          style: TextButton.styleFrom(
-                            primary: Colors.white,
-                            backgroundColor: Colors.blue
-                          ),
-                          onPressed:  ()
-                          {
-                            dynamic result = FirebaseFirestore.instance.collection("Employer").doc(uid).collection("JOB_Apply").add({
-                              "name" : name1,
-                            "user_uid" : user_uid,
-                            "city" : city,
-                            "state" : state,
-                            "email" : email,
-                            "address" : address,
-                           }).then((value){
 
-                          });
-                            // final snackbar = SnackBar(
-                            //     content: Text('Applied Successfully')
-
-                            // );
-                            // _scaffoldkey.currentState.showSnackBar(snackbar);
-                          Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                          builder: (context) => p5_4_employee_complete_pro(),
-                          ));
-                          },
-
-                        ),
-                        const SizedBox(width: 10),
-                      ]
-                  )
-                ]
-            )*/
             )));
+    }
   }
-}

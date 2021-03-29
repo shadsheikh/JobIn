@@ -1,5 +1,5 @@
 import 'package:dsc_jobin/p3_Employee_login.dart';
-import 'package:dsc_jobin/p5_1_Employee_Chg_Name.dart';
+import 'package:dsc_jobin/p5_Employee.dart';
 import 'package:dsc_jobin/p5_2_Employee_Job_Appl.dart';
 import 'package:dsc_jobin/p5_3_Employee_My_Netw.dart';
 import 'package:dsc_jobin/p5_4_Employee_Complete_Pro.dart';
@@ -46,8 +46,8 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: ListView(
-      //child: Column(
+      child: ListView(
+        //child: Column(
         //mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           UserAccountsDrawerHeader(
@@ -59,7 +59,7 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
             ),
             currentAccountPicture: CircleAvatar(
               child : Text(
-                 // "S"
+                // "S"
                   "$_pic"
               ),
               backgroundColor: Colors.white,
@@ -67,26 +67,10 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           ),
 
           ListTile(
-            leading : Icon(Icons.person_add_outlined),
-            title : Text(
-              "Change Name",
-            ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => p5_1_employee_chg_name(),
-                    ));
-              }
-          ),
-
-          Divider(),
-
-          ListTile(
-            leading : Icon(Icons.settings_applications),
-            title : Text(
-              "Job Applied",
-            ),
+              leading : Icon(Icons.settings_applications),
+              title : Text(
+                "Job Applied",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -99,15 +83,15 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           Divider(),
 
           ListTile(
-            leading : Icon(Icons.group),
-            title : Text(
-              "My Network",
-            ),
+              leading : Icon(Icons.group),
+              title : Text(
+                "Jobs",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => p5_3_employee_my_netw(),
+                      builder: (context) => p5_employee(),
                     ));
               }
           ),
@@ -115,10 +99,10 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           Divider(),
 
           ListTile(
-            leading : Icon(Icons.person_add),
-            title : Text(
-              "Complete Your Profile",
-            ),
+              leading : Icon(Icons.person_add),
+              title : Text(
+                "Complete Your Profile",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -131,10 +115,10 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           Divider(),
 
           ListTile(
-            leading : Icon(Icons.widgets_rounded),
-            title : Text(
-              "Skill",
-            ),
+              leading : Icon(Icons.widgets_rounded),
+              title : Text(
+                "Skill",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -147,15 +131,15 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           Divider(),
 
           ListTile(
-            leading : Icon(Icons.autorenew),
-            title : Text(
-              "Change Password",
-            ),
+              leading : Icon(Icons.autorenew),
+              title : Text(
+                "Change Password",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => p5_6_employee_chg_pass(),
+                      builder: (context) => p5_6_employee_chg_password(),
                     ));
               }
           ),
@@ -164,10 +148,10 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           Divider(),
 
           ListTile(
-            leading : Icon(Icons.report),
-            title : Text(
-              "Report",
-            ),
+              leading : Icon(Icons.report),
+              title : Text(
+                "Report",
+              ),
               onTap: () {
                 Navigator.push(
                     context,
@@ -179,21 +163,21 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
 
           Divider(),
           //Expanded(
-              //child: Align(
-                //alignment: Alignment.bottomCenter,
-                ListTile(
-                  leading : Icon(Icons.contacts),
-                  title : Text(
-                    "Contact Us",
-                  ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => p5_8_employee_con_us(),
-                          ));
-                    }
-                ),
+          //child: Align(
+          //alignment: Alignment.bottomCenter,
+          ListTile(
+              leading : Icon(Icons.contacts),
+              title : Text(
+                "Contact Us",
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => p5_8_employee_con_us(),
+                    ));
+              }
+          ),
 
           Divider(),
 
@@ -211,7 +195,7 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
                     ));
               }
           ),
-              //))
+          //))
 
         ],
       ),

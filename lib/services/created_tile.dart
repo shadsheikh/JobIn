@@ -10,7 +10,6 @@ import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 class JobTile extends StatelessWidget{
   final Created created;
   JobTile({this.created});
-
   @override
   Widget build(BuildContext context){
     return Padding(
@@ -54,7 +53,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.jobtitle}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -73,7 +72,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.salary}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -92,7 +91,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.vacancy}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -111,7 +110,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.skills}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -130,7 +129,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.jobmode}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -149,7 +148,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.jobtype}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -157,7 +156,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'city: ',
+                      'City: ',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
@@ -168,7 +167,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.city}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -187,7 +186,7 @@ class JobTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${created.state}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),

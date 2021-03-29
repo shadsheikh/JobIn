@@ -6,12 +6,12 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
-class ApplicantsTile extends StatelessWidget{
+class ApplicantsTile extends StatelessWidget {
   final Applicants applicants;
   ApplicantsTile({this.applicants});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
@@ -29,7 +29,7 @@ class ApplicantsTile extends StatelessWidget{
               BoxShadow(
                   blurRadius: 5, color: Colors.black, offset: Offset(1, 3))
             ] // make rounded corner of border
-        ),
+            ),
         child: Column(
           children: [
             Table(
@@ -53,7 +53,7 @@ class ApplicantsTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${applicants.name}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -72,7 +72,7 @@ class ApplicantsTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${applicants.email}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -91,7 +91,7 @@ class ApplicantsTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${applicants.address}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -110,7 +110,7 @@ class ApplicantsTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${applicants.city}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
@@ -129,18 +129,24 @@ class ApplicantsTile extends StatelessWidget{
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       '${applicants.state}',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
               ],
             ),
-
-
+            ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width*0.8,
+              buttonColor: Colors.white,
+                child: RaisedButton(
+                    child: Text(
+                      'Confirm',
+                      style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 15),
+                    ),
+                    onPressed: () {}))
           ],
         ),
       ),
-
     );
   }
 }

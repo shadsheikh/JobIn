@@ -15,44 +15,70 @@ class sign12 extends StatefulWidget {
 class _sign12State extends State<sign12> {
   final _formkey = GlobalKey<FormState>();
   final AuthService _auth = AuthService();
-  String email,password,address,name,city,state,id;
+  String email, password, address, name, city, state, id;
   String error = '';
+  var _name = TextEditingController();
   var _password = TextEditingController();
+  var _email = TextEditingController();
+  var _address = TextEditingController();
+  var _city = TextEditingController();
+  var _state = TextEditingController();
+  var _id = TextEditingController();
   var _passwordVisible;
-  var _passwordValidate=false;
+  var _passwordValidate = false;
+  var _nameValidate = false;
+  var _emailValidate = false;
+  var _addressValidate = false;
+  var _cityValidate = false;
+  var _stateValidate = false;
+  var _idValidate = false;
   @override
+  void dispose() {
+    _name.dispose();
+    _password.dispose();
+    _email.dispose();
+    _address.dispose();
+    _city.dispose();
+    _state.dispose();
+    _id.dispose();
+    super.dispose();
+  }
+
   void initState() {
     _passwordVisible = false;
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
 
 
       resizeToAvoidBottomInset: false,
      appBar: AppBar(
+=======
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+>>>>>>> 3cfe5604b6af3001b30fcb31634a42fa9fd1c196
           title: Text(
-            "Sign Up",
-          )
-      ),
-
-      body:Column(
+        "Sign Up",
+      )),
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:<Widget> [
-
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: Column(
               children: [
-
                 //Name
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _name,
+                    onChanged: (val) {
                       setState(() => name = val);
                     },
                     decoration: InputDecoration(
-
+                      errorText: _nameValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your Name',
@@ -69,10 +95,13 @@ class _sign12State extends State<sign12> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _email,
+                    onChanged: (val) {
                       setState(() => email = val);
                     },
                     decoration: InputDecoration(
+                      errorText:
+                          _emailValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your Contact no / Gmail',
@@ -92,8 +121,7 @@ class _sign12State extends State<sign12> {
                   child: TextFormField(
                     controller: _password,
                     obscureText: !_passwordVisible,
-
-                    onChanged: (val){
+                    onChanged: (val) {
                       setState(() => password = val);
                     },
                     decoration: InputDecoration(
@@ -107,7 +135,7 @@ class _sign12State extends State<sign12> {
                       ),
                       prefixText: '  ',
                       errorText:
-                      _passwordValidate ? 'Value Can\'t Be Empty' : null,
+                          _passwordValidate ? 'Value Can\'t Be Empty' : null,
                       suffixIcon: IconButton(
                         icon: Icon(
                           _passwordVisible
@@ -130,10 +158,13 @@ class _sign12State extends State<sign12> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _address,
+                    onChanged: (val) {
                       setState(() => address = val);
                     },
                     decoration: InputDecoration(
+                      errorText:
+                          _addressValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your Address',
@@ -150,10 +181,12 @@ class _sign12State extends State<sign12> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _city,
+                    onChanged: (val) {
                       setState(() => city = val);
                     },
                     decoration: InputDecoration(
+                      errorText: _cityValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your City',
@@ -170,10 +203,13 @@ class _sign12State extends State<sign12> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _state,
+                    onChanged: (val) {
                       setState(() => state = val);
                     },
                     decoration: InputDecoration(
+                      errorText:
+                          _stateValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your State',
@@ -186,16 +222,16 @@ class _sign12State extends State<sign12> {
                   ),
                 ),
 
-
-
                 //Id
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    onChanged: (val){
+                    controller: _id,
+                    onChanged: (val) {
                       setState(() => id = val);
                     },
                     decoration: InputDecoration(
+                      errorText: _idValidate ? 'Value Can\'t Be Empty' : null,
                       fillColor: Colors.white,
                       filled: true,
                       hintText: 'Enter Your Id',
@@ -207,7 +243,6 @@ class _sign12State extends State<sign12> {
                     ),
                   ),
                 ),
-
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -233,14 +268,44 @@ class _sign12State extends State<sign12> {
                     height: MediaQuery.of(context).size.height * 0.07,
                     child: RaisedButton(
                       onPressed: () async {
-                        dynamic result = await _auth
-                            .registerwithEmailAndPassword(email, password, name,state,city,address,id);
-                        if (result == null) {
+                        setState(() {
+                          _name.text.isEmpty
+                              ? _nameValidate = true
+                              : _nameValidate = false;
+                          _email.text.isEmpty
+                              ? _emailValidate = true
+                              : _emailValidate = false;
+                          _password.text.isEmpty
+                              ? _passwordValidate = true
+                              : _passwordValidate = false;
+                          _address.text.isEmpty
+                              ? _addressValidate = true
+                              : _addressValidate = false;
+                          _city.text.isEmpty
+                              ? _cityValidate = true
+                              : _cityValidate = false;
+                          _state.text.isEmpty
+                              ? _stateValidate = true
+                              : _stateValidate = false;
+                          _id.text.isEmpty
+                              ? _idValidate = true
+                              : _idValidate = false;
+                        });
+                        dynamic result =
+                            await _auth.registerwithEmailAndPassword(email,
+                                password, name, state, city, address, id);
+                        if (result == null &&
+                            !(_nameValidate == false &&
+                                _emailValidate == false &&
+                                _passwordValidate == false &&
+                                _addressValidate == false &&
+                                _cityValidate == false &&
+                                _stateValidate == false &&
+                                _idValidate == false)) {
                           setState(() {
                             error = 'Something went wrong. Try again';
                           });
-                        }
-                        else {
+                        } else {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -258,8 +323,6 @@ class _sign12State extends State<sign12> {
                     ),
                   ),
                 )
-
-
               ],
             ),
           ),
