@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'p5_Employee_Drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dsc_jobin/models/employee.dart';
+import 'package:dsc_jobin/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:dsc_jobin/services/employer_list.dart';
+import 'package:dsc_jobin/services/employee_job_applied.dart';
 
 class p5_2_employee_job_appl extends StatefulWidget {
   @override
@@ -11,9 +18,12 @@ class _p5_2_employee_job_applState extends State<p5_2_employee_job_appl> {
   Icon cusIcon = Icon(Icons.search);
   Widget cutSearchBar = Text("Job Applied");
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return StreamProvider<List<Employee>>.value(
+        value:DatabaseService().employee,
+      child:Scaffold(
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -63,54 +73,8 @@ class _p5_2_employee_job_applState extends State<p5_2_employee_job_appl> {
       ),
       drawer: p5_employee_drawer(),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: container(
-                  context,
-                  'John Marsh',
-                  '20',
-                  'Teaching',
-                  '164, Saket Nagar, Indore, MP',
-                  '9876543210'),
-            ),
-          ],
-        ),
-      ),
-
-    );
+      body: EmployeeJobList(),
+    ));
   }
 
 }
