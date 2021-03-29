@@ -33,8 +33,8 @@ class _p2_optionState extends State<p2_option> {
             buttonTheme(context, 0.95, 0.07, 'Employee', _white, 25.0, 20.0),
             sizedBox(context, 0.1),
             buttonTheme(context, 0.95, 0.07, 'Employer', _white, 25.0, 20.0),
-            sizedBox(context, 0.1),
-            buttonTheme(context, 0.95, 0.07, 'Admin', _white, 25.0, 20.0),
+            // sizedBox(context, 0.1),
+            // buttonTheme(context, 0.95, 0.07, 'Admin', _white, 25.0, 20.0),
           ],
         ),
       ),
@@ -70,13 +70,13 @@ ButtonTheme buttonTheme(BuildContext context, double width, double height,
                 builder: (context) => p3_employer_login(),
               ));
         }
-        else{
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => p3_admin_login(),
-              ));
-        }
+        // else{
+        //   Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => p3_admin_login(),
+        //       ));
+        // }
 
 
       },

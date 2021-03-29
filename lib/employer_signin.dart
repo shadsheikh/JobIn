@@ -1,4 +1,5 @@
 import 'package:dsc_jobin/p2_options.dart';
+import 'package:dsc_jobin/verification_employer.dart';
 import 'package:dsc_jobin/p3_Employer_login.dart';
 import 'package:dsc_jobin/p3_Employee_login.dart';
 import 'package:flutter/material.dart';
@@ -302,7 +303,7 @@ class _sign12State extends State<sign12> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => p3_employer_login(),
+                                builder: (context) => Verification(),
                               ));
                         }
                       },
