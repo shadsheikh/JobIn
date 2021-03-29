@@ -14,8 +14,9 @@ class _ApplicantsListState extends State<ApplicantsList>{
   @override
   Widget build(BuildContext context) {
     final applicant = Provider.of<List<Applicants>>(context);
-
-    return ListView.builder(
+    return applicant==null
+        ? Container()
+        :ListView.builder(
         itemCount: applicant.length,
         itemBuilder: (context,index){
           return ApplicantsTile(applicants: applicant[index]);

@@ -17,8 +17,9 @@ class _JobListState extends State<JobList>{
   @override
   Widget build(BuildContext context) {
     final created = Provider.of<List<Created>>(context);
-
-    return ListView.builder(
+    return created==null
+        ? Container()
+        :ListView.builder(
         itemCount: created.length,
         itemBuilder: (context,index){
           return JobTile(created: created[index]);
