@@ -50,15 +50,8 @@ class _sign12State extends State<sign12> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-
-
-      resizeToAvoidBottomInset: false,
-     appBar: AppBar(
-=======
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
->>>>>>> 3cfe5604b6af3001b30fcb31634a42fa9fd1c196
           title: Text(
         "Sign Up",
       )),

@@ -7,11 +7,30 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
-class JobTile extends StatelessWidget{
+class JobTile extends StatefulWidget {
   final Created created;
   JobTile({this.created});
+
   @override
-  Widget build(BuildContext context){
+  _JobTileState createState() => _JobTileState();
+}
+
+class _JobTileState extends State<JobTile> {
+  @override
+  Widget build(BuildContext context) {
+    var _jobType = widget.created.jobtype;
+    var _jobMode = widget.created.jobmode;
+
+    if (_jobType == "JobType.partTime") {
+      _jobType = "Part Time";
+    } else {
+      _jobType = "Full Time";
+    }
+    if (_jobMode == "JobMode.online") {
+      _jobMode = "Online";
+    } else {
+      _jobMode = "Offline";
+    }
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
@@ -29,7 +48,7 @@ class JobTile extends StatelessWidget{
               BoxShadow(
                   blurRadius: 5, color: Colors.black, offset: Offset(1, 3))
             ] // make rounded corner of border
-        ),
+            ),
         child: Column(
           children: [
             Table(
@@ -52,7 +71,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.jobtitle}',
+                      '${widget.created.jobtitle}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -71,7 +90,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.salary}',
+                      '${widget.created.salary}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -90,7 +109,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.vacancy}',
+                      '${widget.created.vacancy}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -109,7 +128,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.skills}',
+                      '${widget.created.skills}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -128,7 +147,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.jobmode}',
+                      '${_jobMode}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -147,7 +166,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.jobtype}',
+                      '${_jobType}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -166,7 +185,7 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.city}',
+                      '${widget.created.city}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -185,19 +204,16 @@ class JobTile extends StatelessWidget{
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${created.state}',
+                      '${widget.created.state}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
               ],
             ),
-
-
           ],
         ),
       ),
-
     );
   }
 }

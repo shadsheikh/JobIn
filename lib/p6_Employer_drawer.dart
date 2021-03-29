@@ -65,7 +65,6 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
               backgroundColor: Colors.white,
             ),
           ),
-          Divider(),
           ListTile(
               leading: Icon(Icons.messenger_outline),
               title: Text(
@@ -157,19 +156,19 @@ class _EmployerDrawerState extends State<EmployerDrawer> {
                     ));
               }),
           Divider(),
-          ListTile(
-              leading: Icon(Icons.contacts),
-              title: Text(
-                "Contact Us",
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ContactUs(),
-                    ));
-              }),
-          Divider(),
+          // ListTile(
+          //     leading: Icon(Icons.contacts),
+          //     title: Text(
+          //       "Contact Us",
+          //     ),
+          //     onTap: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => ContactUs(),
+          //           ));
+          //     }),
+          // Divider(),
           ListTile(
               leading: Icon(Icons.person),
               title: Text(

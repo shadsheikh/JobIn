@@ -165,21 +165,21 @@ class _p5_employee_drawerState extends State<p5_employee_drawer> {
           //Expanded(
           //child: Align(
           //alignment: Alignment.bottomCenter,
-          ListTile(
-              leading : Icon(Icons.contacts),
-              title : Text(
-                "Contact Us",
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => p5_8_employee_con_us(),
-                    ));
-              }
-          ),
+          // ListTile(
+          //     leading : Icon(Icons.contacts),
+          //     title : Text(
+          //       "Contact Us",
+          //     ),
+          //     onTap: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => p5_8_employee_con_us(),
+          //           ));
+          //     }
+          // ),
 
-          Divider(),
+          // Divider(),
 
           ListTile(
               leading : Icon(Icons.person),
