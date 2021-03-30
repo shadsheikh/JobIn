@@ -6,6 +6,6 @@ class Confirm
   final String city;
   final String state;
   final String user_uid;
-
-  Confirm({this.name,this.email,this.address,this.city,this.state,this.user_uid});
+  bool highlight=true;
+  Confirm({this.name,this.email,this.address,this.city,this.state,this.user_uid,this.highlight});
 }

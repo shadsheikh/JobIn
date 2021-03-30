@@ -7,6 +7,8 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
+import '../p6_2_1_Employer_update_job.dart';
+
 class JobTile extends StatefulWidget {
   final Created created;
 
@@ -212,6 +214,28 @@ class _JobTileState extends State<JobTile> {
                 ]),
               ],
             ),
+            ButtonTheme(
+                minWidth: MediaQuery.of(context).size.width*0.8,
+                buttonColor: Colors.white,
+                child: RaisedButton(
+                    child: Text(
+                      'Update Job',
+                      style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 15),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => p6_2_1_employer_update_job(
+                                  widget.created.jobtitle,
+                                  widget.created.salary,
+                                  widget.created.vacancy,
+                                  widget.created.skills,
+                                  widget.created.jobtype,
+                                  widget.created.jobmode,
+                                  widget.created.state,
+                                  widget.created.city)));
+                    }))
           ],
         ),
       ),

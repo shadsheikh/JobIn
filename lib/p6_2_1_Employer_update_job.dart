@@ -77,8 +77,8 @@ class _p6_2_1_employer_update_jobState
                     Icons.person,
                     color: Theme.of(context).primaryColorDark,
                   ),
-                  errorText:
-                      _jobTitileValidate ? 'Value Can\'t Be Empty' : null,
+                  // errorText:
+                  //     _jobTitileValidate ? 'Value Can\'t Be Empty' : null,
                   prefixText: '  ',
                   border:
                       OutlineInputBorder(borderSide: BorderSide(color: _black)),

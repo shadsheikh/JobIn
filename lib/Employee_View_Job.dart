@@ -319,6 +319,7 @@ class _employee_jobState extends State<EmployeeJob> {
                                 "uid": employer.user_uid,
                               }
                           ).then((value) {});
+                          var highlight=false;
                           dynamic result = FirebaseFirestore.instance
                               .collection("Employer")
                               .doc(uid)
@@ -330,6 +331,7 @@ class _employee_jobState extends State<EmployeeJob> {
                             "state": state,
                             "email": email,
                             "address": address,
+                            "highlight": highlight,
                           }).then((value) {print(value); docref=value;});
 
                           final snackbar =

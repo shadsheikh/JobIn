@@ -20,6 +20,7 @@ class DataService
         name: doc.data()['name'].toString() ,
         state: doc.data()['state'].toString() ,
         user_uid: doc.data()['user_uid'].toString() ,
+        highlight: doc.data()['highlight'],
       );
     }).toList();
   }

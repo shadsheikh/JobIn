@@ -56,9 +56,6 @@ class _sign12State extends State<sign12> {
   }
 
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Scaffold(
-=======
     void sendOTP() async {
       EmailAuth.sessionName = "JobIn";
       var res = await EmailAuth.sendOtp(receiverMail: _email.text);
@@ -78,11 +75,10 @@ class _sign12State extends State<sign12> {
         });
       }
     }
->>>>>>> e8cd642104c35d5ba245e2a5f17362dcba2ef1d6
 
     bool verifyOTP() {
       var res =
-          EmailAuth.validate(receiverMail: _email.text, userOTP: _otp.text);
+      EmailAuth.validate(receiverMail: _email.text, userOTP: _otp.text);
       if (res) {
         return true;
       } else {
@@ -90,20 +86,12 @@ class _sign12State extends State<sign12> {
       }
     }
 
-<<<<<<< HEAD
-
-
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-
-=======
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
->>>>>>> e8cd642104c35d5ba245e2a5f17362dcba2ef1d6
           title: Text(
-        "Sign Up",
-      )),
+            "Sign Up",
+          )),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +112,7 @@ class _sign12State extends State<sign12> {
                       },
                       decoration: InputDecoration(
                         errorText:
-                            _nameValidate ? 'Value Can\'t Be Empty' : null,
+                        _nameValidate ? 'Value Can\'t Be Empty' : null,
                         fillColor: Colors.white,
                         filled: true,
                         hintText: 'Enter Your Name',
@@ -198,7 +186,7 @@ class _sign12State extends State<sign12> {
                         ),
                         prefixText: '  ',
                         errorText:
-                            _passwordValidate ? 'Value Can\'t Be Empty' : null,
+                        _passwordValidate ? 'Value Can\'t Be Empty' : null,
                         suffixIcon: IconButton(
                           icon: Icon(
                             _passwordVisible
@@ -227,7 +215,7 @@ class _sign12State extends State<sign12> {
                       },
                       decoration: InputDecoration(
                         errorText:
-                            _addressValidate ? 'Value Can\'t Be Empty' : null,
+                        _addressValidate ? 'Value Can\'t Be Empty' : null,
                         fillColor: Colors.white,
                         filled: true,
                         hintText: 'Enter Your Address',
@@ -250,7 +238,7 @@ class _sign12State extends State<sign12> {
                       },
                       decoration: InputDecoration(
                         errorText:
-                            _cityValidate ? 'Value Can\'t Be Empty' : null,
+                        _cityValidate ? 'Value Can\'t Be Empty' : null,
                         fillColor: Colors.white,
                         filled: true,
                         hintText: 'Enter Your City',
@@ -273,7 +261,7 @@ class _sign12State extends State<sign12> {
                       },
                       decoration: InputDecoration(
                         errorText:
-                            _stateValidate ? 'Value Can\'t Be Empty' : null,
+                        _stateValidate ? 'Value Can\'t Be Empty' : null,
                         fillColor: Colors.white,
                         filled: true,
                         hintText: 'Enter Your State',
@@ -318,7 +306,7 @@ class _sign12State extends State<sign12> {
                       // },
                       decoration: InputDecoration(
                         errorText:
-                            _otpValidate ? 'Value Can\'t Be Empty' : null,
+                        _otpValidate ? 'Value Can\'t Be Empty' : null,
                         fillColor: Colors.white,
                         filled: true,
                         hintText: 'Enter Your OTP',
@@ -382,8 +370,8 @@ class _sign12State extends State<sign12> {
                                 : _otpValidate = false;
                           });
                           dynamic result =
-                              await _auth.registerwithEmailAndPassword(email,
-                                  password, name, state, city, address, id);
+                          await _auth.registerwithEmailAndPassword(email,
+                              password, name, state, city, address, id);
                           if (result == null ||
                               !(_nameValidate == false &&
                                   _emailValidate == false &&

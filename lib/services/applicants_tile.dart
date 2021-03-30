@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/models/applicants.dart';
+import 'package:dsc_jobin/models/confirm_employee.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,27 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
-class ApplicantsTile extends StatelessWidget {
+import 'confirm_tile.dart';
+
+class ApplicantsTile extends StatefulWidget {
   final Applicants applicants;
   ApplicantsTile({this.applicants});
+  //final Confirm confirm;
+  //ConfirmTile({this.confirm});
+  @override
+  _ApplicantsTileState createState() => _ApplicantsTileState();
+}
+
+class _ApplicantsTileState extends State<ApplicantsTile> {
 
   @override
+  void initState() {
+    super.initState();
+
+  }
+
   Widget build(BuildContext context) {
+    var _highlight=widget.applicants.highlight;
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
@@ -54,7 +70,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.name}',
+                      '${widget.applicants.name}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -73,7 +89,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.email}',
+                      '${widget.applicants.email}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -92,7 +108,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.address}',
+                      '${widget.applicants.address}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -111,7 +127,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.city}',
+                      '${widget.applicants.city}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -130,7 +146,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.state}',
+                      '${widget.applicants.state}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -146,19 +162,30 @@ class ApplicantsTile extends StatelessWidget {
                       style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 15),
                     ),
                     onPressed: () {
+                      widget.applicants.highlight=true;
                       FirebaseFirestore.instance
                           .collection("Employer")
                           .doc(FirebaseAuth.instance.currentUser.uid)
                           .collection("Confirm_Employee")
                           .add(
                           {
-                            "name": applicants.name,
-                            "email": applicants.email,
-                            "address": applicants.address,
-                            "city": applicants.city,
-                            "state": applicants.state,
+                            "name": widget.applicants.name,
+                            "email": widget.applicants.email,
+                            "address": widget.applicants.address,
+                            "city": widget.applicants.city,
+                            "state": widget.applicants.state,
+                            "highlight":widget.applicants.highlight,
                           }
-                      ).then((value) {});
+                      ).then((value) {
+                        setState(() {
+                          final snackBar = SnackBar(
+                            content: Text('Confirmed Employee'),
+                          );
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBar);
+                        });
+                      });
+
                     }))
           ],
         ),

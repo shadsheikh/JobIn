@@ -15,6 +15,7 @@ class EmployerApplicants extends StatefulWidget {
 }
 class _employer_applicants extends State<EmployerApplicants>{
   String name, email, address, city, state, user_uid, display = '';
+
   final _authf = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   User user;

@@ -9,12 +9,14 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
+
 class ConfirmTile extends StatelessWidget {
   final Confirm confirm;
   ConfirmTile({this.confirm});
-
+  var check;
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Container(
