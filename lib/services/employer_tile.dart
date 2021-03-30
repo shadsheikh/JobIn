@@ -41,7 +41,7 @@ class EmployerTile extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
               TextButton(
-                child: const Text('...more',style: TextStyle(fontSize: 15),),
+                child: const Text('More...',style: TextStyle(fontSize: 15),),
                 style: TextButton.styleFrom(
                   primary: Colors.white,
                 ),

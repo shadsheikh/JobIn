@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'p6_Employer_chat_icon.dart';
 import 'p6_Employer_drawer.dart';
 import 'p6_Employer_notification_icon.dart';
+import 'package:dsc_jobin/services/auth.dart';
 
 class CompleteProfile extends StatefulWidget {
   @override
@@ -10,6 +12,10 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
+  final AuthService _auth = AuthService();
+  final _authf = FirebaseAuth.instance;
+  String name,email,skills,dob;
+  User user;
   DateTime selectedDate= DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -23,8 +29,40 @@ class _CompleteProfileState extends State<CompleteProfile> {
       });
   }
 
+  void initState() {
+    super.initState();
+    _getData();
+    initUser();
+  }
+  Future<void> _getData() async{
+
+    FirebaseFirestore.instance.collection('Employer')
+        .doc((await FirebaseAuth.instance.currentUser).uid)
+        .get()
+        .then((value){
+      setState(() {
+        name = value.data()['name'].toString();
+        email = value.data()['email'].toString();
+        //skills = value.data()['skills'].toString();
+        dob = value.data()['dob'].toString();
+      });
+    });
+  }
+  initUser() async{
+    user = await _authf.currentUser;
+    setState(() {});
+  }
+
+
   @override
+  TextEditingController displayNameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController skillsController = new TextEditingController();
+  DateTime select;
   Widget build(BuildContext context) {
+    displayNameController.text = "$name";
+    emailController.text = "$email";
+    //skillsController.text = "$skills";
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -50,9 +88,9 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           style: TextStyle(color: Colors.grey),
                         )),
                     TextField(
-                      //controller: displayNameController,
+                      controller: displayNameController,
                       decoration: InputDecoration(
-                        hintText: "Update Display Name",
+                        hintText: "Name",
                         //errorText: _displayNameValid ? null : "Display Name too short",
                       ),
                     )
@@ -70,7 +108,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           style: TextStyle(color: Colors.grey),
                         )),
                     TextField(
-                      //controller: displayNameController,
+                      controller: skillsController,
                       decoration: InputDecoration(
                         hintText: "Add Skills",
                         //errorText: _displayNameValid ? null : "Display Name too short",
@@ -90,7 +128,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                           style: TextStyle(color: Colors.grey),
                         )),
                     TextField(
-                      //controller: displayNameController,
+                      controller: emailController,
                       decoration: InputDecoration(
                         hintText: "Add Email Address",
                         //errorText: _displayNameValid ? null : "Display Name too short",
@@ -125,7 +163,13 @@ class _CompleteProfileState extends State<CompleteProfile> {
             RaisedButton(
               color: Colors.white,
               onPressed: () {
-
+                FirebaseFirestore.instance.collection('Employer')
+                    .doc((FirebaseAuth.instance.currentUser).uid)
+                    .update({
+                  "name":displayNameController.text,
+                  "skills":skillsController.text,
+                  "dob":"${selectedDate.toLocal()}".split(' ')[0],
+                });
               },
               child: Text(
                 "Update Profile",
