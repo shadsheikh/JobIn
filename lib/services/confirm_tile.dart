@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/models/applicants.dart';
+import 'package:dsc_jobin/models/confirm_employee.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,9 @@ import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/Employee_View_Job.dart';
 import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
-class ApplicantsTile extends StatelessWidget {
-  final Applicants applicants;
-  ApplicantsTile({this.applicants});
+class ConfirmTile extends StatelessWidget {
+  final Confirm confirm;
+  ConfirmTile({this.confirm});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ApplicantsTile extends StatelessWidget {
               BoxShadow(
                   blurRadius: 5, color: Colors.black, offset: Offset(1, 3))
             ] // make rounded corner of border
-            ),
+        ),
         child: Column(
           children: [
             Table(
@@ -54,7 +55,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.name}',
+                      '${confirm.name}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -73,7 +74,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.email}',
+                      '${confirm.email}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -92,7 +93,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.address}',
+                      '${confirm.address}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -111,7 +112,7 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.city}',
+                      '${confirm.city}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
@@ -130,36 +131,14 @@ class ApplicantsTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '${applicants.state}',
+                      '${confirm.state}',
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   )
                 ]),
               ],
             ),
-            ButtonTheme(
-              minWidth: MediaQuery.of(context).size.width*0.8,
-              buttonColor: Colors.white,
-                child: RaisedButton(
-                    child: Text(
-                      'Confirm',
-                      style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,fontSize: 15),
-                    ),
-                    onPressed: () {
-                      FirebaseFirestore.instance
-                          .collection("Employer")
-                          .doc(FirebaseAuth.instance.currentUser.uid)
-                          .collection("Confirm_Employee")
-                          .add(
-                          {
-                            "name": applicants.name,
-                            "email": applicants.email,
-                            "address": applicants.address,
-                            "city": applicants.city,
-                            "state": applicants.state,
-                          }
-                      ).then((value) {});
-                    }))
+
           ],
         ),
       ),

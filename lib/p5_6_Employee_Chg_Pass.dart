@@ -1,12 +1,14 @@
 import 'package:dsc_jobin/p3_Employer_login.dart';
 import 'package:dsc_jobin/p5_Employee.dart';
 import 'package:dsc_jobin/p6_Employer_chat_icon.dart';
-import 'package:dsc_jobin/p5_Employee_drawer.dart';
+import 'package:dsc_jobin/p5_Employee_Drawer.dart';
 import 'package:dsc_jobin/p6_Employer_notification_icon.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'p5_Employee_Drawer.dart';
 
 class p5_6_employee_chg_password extends StatefulWidget {
   @override

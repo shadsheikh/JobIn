@@ -9,6 +9,7 @@ import 'package:dsc_jobin/p6_6_Employer_Applicant.dart';
 
 class JobTile extends StatelessWidget{
   final Created created;
+
   JobTile({this.created});
   @override
   Widget build(BuildContext context){

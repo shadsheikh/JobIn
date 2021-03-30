@@ -1,23 +1,26 @@
+import 'package:dsc_jobin/models/applicants.dart';
+import 'package:dsc_jobin/models/confirm_employee.dart';
+import 'package:dsc_jobin/p5_4_Employee_Complete_Pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_jobin/models/employer.dart';
 import 'package:dsc_jobin/p5_Employee_Drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-DocumentReference docref;
-class EmployeeJob extends StatefulWidget {
-  @override
-  _employee_jobState createState() => _employee_jobState();
-}
 
-class _employee_jobState extends State<EmployeeJob> {
-//class EmployeeJob extends StatelessWidget{
-  String name1, address, state, city, email, user_uid, display = '';
+import 'p6_Employer_drawer.dart';
+
+class ConfirmApplicants extends StatefulWidget {
+  @override
+  _confirm_applicants createState() => _confirm_applicants();
+}
+class _confirm_applicants extends State<ConfirmApplicants>{
+  String name, email, address, city, state, user_uid, display = '';
   final _authf = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   User user;
   Icon cusIcon = Icon(Icons.search);
-  Widget cutSearchBar = Text("Employee");
+  Widget cutSearchBar = Text("Employer");
   var _blue = Colors.blue;
   @override
   void initState() {
@@ -28,17 +31,18 @@ class _employee_jobState extends State<EmployeeJob> {
 
   Future<void> _getData() async {
     FirebaseFirestore.instance
-        .collection('Employee')
-        .doc((await FirebaseAuth.instance.currentUser).uid)
+        .collection('Employer')
+        .doc((await FirebaseAuth.instance.currentUser).uid).collection("Confirm_Employee").doc()
         .get()
         .then((value) {
       setState(() {
-        name1 = value.data()['name'].toString();
+        name = value.data()['name'].toString();
+        email = value.data()['email'].toString();
         address = value.data()['address'].toString();
         city = value.data()['city'].toString();
         state = value.data()['state'].toString();
         user_uid = FirebaseAuth.instance.currentUser.uid;
-        email = value.data()['email'].toString();
+
       });
     });
   }
@@ -47,27 +51,11 @@ class _employee_jobState extends State<EmployeeJob> {
     user = await _authf.currentUser;
     setState(() {});
   }
-
-
-
   @override
   Widget build(BuildContext context) {
-    final Employer employer = ModalRoute.of(context).settings.arguments;
-    String uid = employer.user_uid;
-    int count;
-    var _jobType = employer.jobtype;
-    var _jobMode = employer.jobmode;
 
-    if (_jobType == "JobType.partTime") {
-      _jobType = "Part Time";
-    } else {
-      _jobType = "Full Time";
-    }
-    if (_jobMode == "JobMode.online") {
-      _jobMode = "Online";
-    } else {
-      _jobMode = "Offline";
-    }
+    final Confirm confirm = ModalRoute.of(context).settings.arguments;
+    String uid = confirm.user_uid;
     return Scaffold(
         key: _scaffoldkey,
         appBar: AppBar(
@@ -92,7 +80,7 @@ class _employee_jobState extends State<EmployeeJob> {
                   );
                 } else {
                   this.cusIcon = Icon(Icons.search);
-                  this.cutSearchBar = Text("Employee");
+                  this.cutSearchBar = Text("Employer");
                 }
                 // });
               },
@@ -109,7 +97,7 @@ class _employee_jobState extends State<EmployeeJob> {
           ],
           title: cutSearchBar,
         ),
-        drawer: p5_employee_drawer(),
+        drawer: EmployerDrawer(),
         body: Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Card(
@@ -128,7 +116,7 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Job Title: ',
+                              'Name: ',
                               style: TextStyle(
                                   color: _blue,
                                   fontWeight: FontWeight.bold,
@@ -138,7 +126,7 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              employer.jobtitle,
+                              confirm.name,
                               style: TextStyle(color: _blue, fontSize: 20),
                             ),
                           ),
@@ -149,7 +137,7 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Vacancy: ',
+                              'Email: ',
                               style: TextStyle(
                                   color: _blue,
                                   fontWeight: FontWeight.bold,
@@ -159,7 +147,7 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              '${employer.vacancy}',
+                              '${confirm.email}',
                               style: TextStyle(color: _blue, fontSize: 20),
                             ),
                           ),
@@ -170,7 +158,7 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Skills: ',
+                              'Address: ',
                               style: TextStyle(
                                   color: _blue,
                                   fontWeight: FontWeight.bold,
@@ -180,96 +168,13 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              '${employer.skills}',
+                              '${confirm.address}',
                               style: TextStyle(color: _blue, fontSize: 20),
                             ),
                           ),
                         ],
                       ),
-                      TableRow(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Job Type: ',
-                              style: TextStyle(
-                                  color: _blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '$_jobType',
-                              style: TextStyle(color: _blue, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Job Mode: ',
-                              style: TextStyle(
-                                  color: _blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '$_jobMode',
-                              style: TextStyle(color: _blue, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'State: ',
-                              style: TextStyle(
-                                  color: _blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '${employer.state}',
-                              style: TextStyle(color: _blue, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Salary: ',
-                              style: TextStyle(
-                                  color: _blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '${employer.salary}',
-                              style: TextStyle(color: _blue, fontSize: 20),
-                            ),
-                          ),
-                        ],
-                      ),
+
                       TableRow(
                         children: [
                           Padding(
@@ -285,7 +190,29 @@ class _employee_jobState extends State<EmployeeJob> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              '${employer.city}',
+                              '${confirm.city}',
+                              style: TextStyle(color: _blue, fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'State: ',
+                              style: TextStyle(
+                                  color: _blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '${confirm.state}',
                               style: TextStyle(color: _blue, fontSize: 20),
                             ),
                           ),
@@ -294,57 +221,10 @@ class _employee_jobState extends State<EmployeeJob> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height*0.1,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        child: const Text('Apply'),
-                        style: TextButton.styleFrom(
-                            primary: Colors.white,
-                            backgroundColor: Colors.blue),
-                        onPressed: () {
-                          FirebaseFirestore.instance
-                              .collection("Employee")
-                              .doc(FirebaseAuth.instance.currentUser.uid)
-                              .collection("JOB_Applied")
-                              .add(
-                              {
-                                "jobtittle": employer.jobtitle,
-                                "skills": employer.skills,
-                                "vaccancy": employer.vacancy,
-                                "jobtype": employer.jobtype,
-                                "jobmode": employer.jobmode,
-                                "state": employer.state,
-                                "city": employer.city,
-                                "uid": employer.user_uid,
-                              }
-                          ).then((value) {});
-                          dynamic result = FirebaseFirestore.instance
-                              .collection("Employer")
-                              .doc(uid)
-                              .collection("JOB_Apply")
-                              .add({
-                            "name": name1,
-                            "user_uid": user_uid,
-                            "city": city,
-                            "state": state,
-                            "email": email,
-                            "address": address,
-                          }).then((value) {print(value); docref=value;});
-
-                          final snackbar =
-                          SnackBar(content: Text('Applied Successfully'));
-                          _scaffoldkey.currentState.showSnackBar(snackbar);
-                        }
-
-                      ),
-                      const SizedBox(width: 10),
-                    ],
-                  )
                 ],
               ),
 
-
             )));
-    }
   }
+
+}
